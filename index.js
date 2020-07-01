@@ -48,9 +48,9 @@ client.on('message', message => {
         case "choose":
             choose(message, args.shift());
             break;
-        case "killbot":
-            killbot(client);
-            break;
+        // case "killbot":
+        //     killbot(client);
+        //     break;
         default:
             message.author.send("`"+ message.content +"` is not a valid command");
             break;
