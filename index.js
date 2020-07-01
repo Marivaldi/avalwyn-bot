@@ -21,13 +21,6 @@ const bot_store = new Storage('./data/bot_data');
 const client = new Discord.Client();
 client.once('ready', () => {
     create_random_npcs(50);
-    // const channel_id = bot_store.get("active_channel_id");
-    // if (!channel_id) return;
-
-    // const activeChannel = client.channels.cache.get(channel_id);
-    // if (!activeChannel) return;
-
-    // activeChannel.send("Sorry. Just woke up from a lil nap.");
 });
 
 client.on('message', message => {
