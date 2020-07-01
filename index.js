@@ -21,11 +21,11 @@ const bot_store = new Storage('./data/bot_data');
 const client = new Discord.Client();
 client.once('ready', () => {
     create_random_npcs(50);
-    const channel_id = bot_store.get("active_channel_id");
-    if (!channel_id) return;
+    // const channel_id = bot_store.get("active_channel_id");
+    // if (!channel_id) return;
 
-    const activeChannel = client.channels.cache.get(channel_id);
-    if (!activeChannel) return;
+    // const activeChannel = client.channels.cache.get(channel_id);
+    // if (!activeChannel) return;
 
     // activeChannel.send("Sorry. Just woke up from a lil nap.");
 });
@@ -49,7 +49,7 @@ client.on('message', message => {
             no(message);
             break;
         case "choose":
-            choose(message, args.shift());
+            choose(message, args.shift(), client);
             break;
         case "active_channel":
             active_channel(message.channel);

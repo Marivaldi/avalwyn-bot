@@ -4,12 +4,13 @@ const PlayerState = require("../PlayerState");
 
 const Storage = require('node-storage');
 const bot_store = new Storage('./data/bot_data');
+const active_channel_store = new Storage('./data/active_channel_data');
 
 module.exports = (message) => {
     if(!message) return;
 
-    const channel_id = bot_store.get("active_channel_id");
-    if (message.channel.type !== "dm" && !channel_id) bot_store.put("active_channel_id", message.channel.id);
+    const channel_id = active_channel_store.get("active_channel_id");
+    if (message.channel.type !== "dm" && !channel_id) active_channel_store.put("active_channel_id", message.channel.id);
 
     const player_state = new PlayerState(message.author.id);
     const isInProperState = player_state.stateMachine.can('start');

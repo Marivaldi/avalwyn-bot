@@ -5,9 +5,10 @@ const to_faction_name = require("../texts/to_faction_name");
 const valid_factions = require("../factions/valid_factions.json");
 
 const Storage = require('node-storage');
+const send_message_to_active_channel = require('../helpers/send_message_to_active_channel');
 const bot_store = new Storage('./data/bot_data');
 
-module.exports = (message, choice) => {
+module.exports = (message, choice, client) => {
     if(!message) return;
 
     const player_state = new PlayerState(message.author.id);
@@ -28,5 +29,6 @@ module.exports = (message, choice) => {
     bot_store.put(`${message.author.id}.faction`, choice);
 
     const faction_name = to_faction_name(choice);
-    message.author.send(`You have chosen ${faction_name}. Good luck!`);
+    message.author.send(`You have chosen ${faction_name}. Good luck!`)
+    send_message_to_active_channel(`${faction_name} has a new member. Welcome, ${message.author}!`, client);
 }
