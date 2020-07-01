@@ -10,6 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.2.0",
-    "node-storage": "0.0.9"
+    "node-storage": "0.0.9",
+    "random": "^2.2.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "javascript-state-machine": "^3.1.0"
   }
 }
