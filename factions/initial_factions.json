@@ -1,0 +1,26 @@
+{
+    "old_country": {
+      "name": "Glad, Vlad & Their Old Country",
+      "fortitude": 1,
+      "magic": 1,
+      "might": 1,
+      "people": 100,
+      "leaders": []
+    },
+    "the_north": {
+      "name": "Douglass & The North",
+      "fortitude": 2,
+      "magic": 1,
+      "might": 0,
+      "people": 75,
+      "leaders": []
+    },
+    "krackan": {
+      "name": "Allrender & the People of Krackan",
+      "fortitude": 1,
+      "magic": 0,
+      "might": 2,
+      "people": 50,
+      "leaders": []
+    }
+  }
