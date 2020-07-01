@@ -1,5 +1,3 @@
-const start = require('../texts/start.json');
-const Discord = require('discord.js');
 const PlayerState = require("../PlayerState");
 
 module.exports = (message) => {

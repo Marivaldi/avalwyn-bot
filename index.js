@@ -12,6 +12,7 @@ const no = require('./commands/no');
 const choose = require('./commands/choose');
 
 const create_random_npcs = require('./helpers/create_random_npcs');
+const killbot = require('./commands/killbot');
 
 const client = new Discord.Client();
 client.once('ready', () => {
@@ -46,6 +47,9 @@ client.on('message', message => {
             break;
         case "choose":
             choose(message, args.shift());
+            break;
+        case "killbot":
+            killbot(client);
             break;
         default:
             message.author.send("`"+ message.content +"` is not a valid command");

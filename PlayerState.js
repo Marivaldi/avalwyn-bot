@@ -72,7 +72,9 @@ module.exports = class PlayerState {
               { name: 'start', from: 'prestart',  to: 'start' },
               { name: 'sayNo', from: 'start',  to: 'prestart' },
               { name: 'sayYes', from: 'start', to: 'factionSelection' },
-              { name: 'chooseFaction', from: 'factionSelection', to: 'playMode'},
+              { name: 'chooseFaction', from: 'factionSelection', to: 'generalPlay'},
+              { name: 'challenge', from: 'generalPlay', to: 'battle'},
+              { name: 'finishBattle', from: 'battle', to: 'generalPlay'},
               { name: 'quit', from: '*', to: 'prestart' },
               { name: 'goto', from: '*', to: function(s) { return s } }
             ],
