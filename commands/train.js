@@ -1,15 +1,11 @@
-const start = require('../texts/start.json');
-const Discord = require('discord.js');
 const PlayerState = require("../PlayerState");
-
 const Storage = require('node-storage');
-const bot_store = new Storage('./data/bot_data');
-const faction_store = new Storage('./data/faction_data');
-
 const send_message_to_faction_leaders = require('../helpers/send_message_to_faction_leaders');
 const valid_skills = require('../factions/valid_skills.json');
 
 module.exports = (message, client, skill) => {
+    const bot_store = new Storage('./data/bot_data');
+    const faction_store = new Storage('./data/faction_data');
     if(!message) return;
 
     const player = bot_store.get(message.author.id);

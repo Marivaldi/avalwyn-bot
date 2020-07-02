@@ -1,7 +1,5 @@
-const Storage = require('node-storage');
 
-module.exports = (message, faction_key, client) => {
-    const faction_store = new Storage('./data/faction_data');
+module.exports = (message, faction_store, faction_key, client) => {
     const faction = faction_store.get(faction_key);
     if(!faction) return;
 

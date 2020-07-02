@@ -1,7 +1,7 @@
 const Storage = require('node-storage');
-const faction_store = new Storage('./data/faction_data');
 
 module.exports = (faction_key, user) => {
+    const faction_store = new Storage('./data/faction_data');
     if(!faction_key || !user) return;
 
     const faction = faction_store.get(faction_key);

@@ -1,0 +1,21 @@
+{
+    "color" : "#F1F1D4",
+    "title": "Skill Trained",
+    "description": {
+        "might": {
+            "the_north": "The sounds of Northern Steel fill the air. Mighty warriors of The North train their might.",
+            "krackan": "A festival of strength is thrown. The Lizardfolk brethren train long days in the great sand pits.",
+            "old_country": "For Old Country, Brudder. We train our people to be strong!"
+        },
+        "fortitude" : {
+            "the_north": "Northmen fortify their icy walls that no man dare challenge.",
+            "krackan": "The best offense is a good defense. The People of Krackan make sturdy their outpost.",
+            "old_country": "Very small, yes? AND STRONG, brother. Old Country train their defenses."
+        },
+        "magic": {
+            "the_north": "The Northern Wizards have toiled in their towers. They're power ever growing.",
+            "krackan": "The Shamans of Krackan summon the spirits of War and Power.",
+            "old_country": "Gnomes Wizards do much training. AND Glaaad bring them cakes. :cake:"
+        }
+    }
+}

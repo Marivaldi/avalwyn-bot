@@ -1,7 +1,7 @@
 const Storage = require('node-storage');
-const active_channel_store = new Storage('./data/active_channel_data');
 
 module.exports = (message, client) => {
+    const active_channel_store = new Storage('./data/active_channel_data');
     if(!message) return;
 
     const channel_id = active_channel_store.get("active_channel_id");

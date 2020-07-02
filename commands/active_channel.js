@@ -1,10 +1,7 @@
-const Discord = require('discord.js');
-const PlayerState = require("../PlayerState");
-
 const Storage = require('node-storage');
-const active_channel_store = new Storage('./data/active_channel_data');
 
 module.exports = (channel) => {
+    const active_channel_store = new Storage('./data/active_channel_data');
     if(!channel) return;
 
     if(channel.type === "dm") return;

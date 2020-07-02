@@ -1,11 +1,10 @@
-const Discord = require('discord.js');
 const PlayerState = require("../PlayerState");
 const faction_selection_embed = require("../embeds/faction_selection_embed");
-
 const Storage = require('node-storage');
-const bot_store = new Storage('./data/bot_data');
+
 
 module.exports = (message) => {
+    const bot_store = new Storage('./data/bot_data');
     if(!message) return;
 
     const player_state = new PlayerState(message.author.id);

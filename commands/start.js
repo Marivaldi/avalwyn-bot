@@ -1,12 +1,10 @@
 const start = require('../texts/start.json');
 const Discord = require('discord.js');
 const PlayerState = require("../PlayerState");
-
 const Storage = require('node-storage');
-const bot_store = new Storage('./data/bot_data');
-const active_channel_store = new Storage('./data/active_channel_data');
 
 module.exports = (message) => {
+    const active_channel_store = new Storage('./data/active_channel_data');
     if(!message) return;
 
     const channel_id = active_channel_store.get("active_channel_id");

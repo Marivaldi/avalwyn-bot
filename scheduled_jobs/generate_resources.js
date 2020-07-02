@@ -8,9 +8,8 @@ const resource_generation = require('../texts/resource_generation.json');
 const to_faction_name = require('../texts/to_faction_name');
 const to_resource_name = require('../texts/to_resource_name');
 const Storage = require('node-storage');
-const faction_store = new Storage('./data/faction_data');
 
-module.exports = (client) => {
+module.exports = async (faction_store, client) => {
     const embed = new Discord.MessageEmbed()
             .setColor(resource_generation.color)
             .setTitle(resource_generation.title)
@@ -32,5 +31,8 @@ module.exports = (client) => {
     embed.setTimestamp();
 
     send_message_to_active_channel(embed, client);
+    return new Promise((resolve, reject) => {
+        resolve('ok')
+    });
 
 }
