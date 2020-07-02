@@ -31,7 +31,8 @@ module.exports = async (message, client, enemy) => {
 
     const player_is_trying_to_fight_self = player.faction === enemy;
     if(player_is_trying_to_fight_self) {
-        message.author.send("As much as we'd all like to see it. You can't fight yourself...  Run `!battle` followed by one of these: `" + factions_not_including_own.join(', ') + "`");
+        const factions_not_including_own = valid_factions.filter((faction) => faction !== player.faction);
+        message.author.send("As much as we'd all like to see it, you can't fight yourself...  Run `!battle` followed by one of these: `" + factions_not_including_own.join(', ') + "`");
         return;
     }
 
