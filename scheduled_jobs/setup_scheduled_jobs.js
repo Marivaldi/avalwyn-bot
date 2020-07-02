@@ -5,11 +5,17 @@ const generate_resources = require('./generate_resources');
 const train_skills = require('./train_skills');
 
 module.exports = (client) => {
-    const every_nineteenth_minute = "0/19 * * * *";
-    const every_hour = "0 */1 * * *";
-    cron.schedule("* * * * *", async () =>  {
+    cron.schedule("0 * * * *", async () =>  {
+        const t = new Date();
+        console.log("Generating Resources...", t.toISOString());
         const faction_store = new Storage('./data/faction_data');
         await generate_resources(faction_store, client);
-        train_skills(faction_store, client);
     });
+
+    cron.schedule("1 */3 * * *", async () =>  {
+        const t = new Date();
+        console.log("Training Skills...", t.toISOString());
+        const faction_store = new Storage('./data/faction_data');
+        await train_skills(faction_store, client);
+    })
 }
