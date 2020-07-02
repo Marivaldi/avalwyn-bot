@@ -16,6 +16,7 @@ const no = require('./commands/no');
 const choose = require('./commands/choose');
 const active_channel = require('./commands/active_channel');
 const setup_scheduled_jobs = require('./scheduled_jobs/setup_scheduled_jobs');
+const train = require('./commands/train');
 // const killbot = require('./commands/killbot');
 
 client.once('ready', () => {
@@ -45,6 +46,9 @@ client.on('message', message => {
             break;
         case "active_channel":
             active_channel(message.channel);
+            break;
+        case "train":
+            train(message, client, args.shift());
             break;
         // case "killbot":
         //     killbot(client);
