@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const cron = require('node-cron');
+
 
 //config
 const {
@@ -15,21 +15,11 @@ const yes = require('./commands/yes');
 const no = require('./commands/no');
 const choose = require('./commands/choose');
 const active_channel = require('./commands/active_channel');
+const setup_scheduled_jobs = require('./scheduled_jobs/setup_scheduled_jobs');
 // const killbot = require('./commands/killbot');
 
-// helpers
-// const create_random_npcs = require('./helpers/create_random_npcs');
-const send_message_to_faction_leaders = require('./helpers/send_message_to_faction_leaders');
-// const send_message_to_active_channel = require('./helpers/send_message_to_active_channel');
-
-
-
-
 client.once('ready', () => {
-    // create_random_npcs(50);
-    // cron.schedule('0 */2 * * *', () => {
-    //     send_message_to_active_channel("I'm actually working... duhh", client);
-    // });
+    setup_scheduled_jobs(client);
 });
 
 client.on('message', message => {

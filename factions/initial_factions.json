@@ -1,26 +1,50 @@
 {
     "old_country": {
       "name": "Glad, Vlad & Their Old Country",
-      "fortitude": 1,
-      "magic": 1,
-      "might": 1,
-      "people": 100,
-      "leaders": []
+      "leaders": [],
+      "diplomats": [],
+      "stats": {
+        "fortitude": 1,
+        "magic": 1,
+        "might": 1
+      },
+      "resources": {
+        "gold": 50,
+        "ore": 0,
+        "food": 20,
+        "citizens": 30
+      }
     },
     "the_north": {
       "name": "Douglass & The North",
-      "fortitude": 2,
-      "magic": 1,
-      "might": 0,
-      "people": 75,
-      "leaders": []
+      "leaders": [],
+      "diplomats": [],
+      "stats" : {
+        "fortitude": 2,
+        "magic": 1,
+        "might": 0
+      },
+      "resources": {
+        "gold": 50,
+        "ore": 0,
+        "food": 20,
+        "citizens": 30
+      }
     },
     "krackan": {
       "name": "Allrender & the People of Krackan",
-      "fortitude": 1,
-      "magic": 0,
-      "might": 2,
-      "people": 50,
-      "leaders": []
+      "leaders": [],
+      "diplomats": [],
+      "stats": {
+        "fortitude": 1,
+        "magic": 0,
+        "might": 2
+      },
+      "resources": {
+        "gold": 50,
+        "ore": 0,
+        "food": 20,
+        "citizens": 30
+      }
     }
   }

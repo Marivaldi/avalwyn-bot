@@ -1,0 +1,20 @@
+{
+    "krackan": {
+        "gold": "Gold",
+        "citizens": "Lizardfolk",
+        "food": "Galley Reeds",
+        "ore": "Ore"
+    },
+    "the_north": {
+        "gold": "Gold",
+        "citizens": "Northmen",
+        "food": "Pork Pies",
+        "ore": "Steel Ores"
+    },
+    "old_country": {
+        "gold": "Gold",
+        "citizens": "Gnomes",
+        "food": "Glad Cakes",
+        "ore": "Irons from Old Country, yes?"
+    }
+}
