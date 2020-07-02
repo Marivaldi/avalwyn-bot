@@ -1,12 +1,11 @@
 const PlayerState = require("../PlayerState");
 const Storage = require('node-storage');
-// const send_message_to_faction_leaders = require('../helpers/send_message_to_faction_leaders');
-const valid_skills = require('../factions/valid_skills.json');
 const valid_factions = require("../factions/valid_factions.json");
-const send_message_to_active_channel = require("../helpers/send_message_to_active_channel");
 const to_faction_name = require("../texts/to_faction_name");
+const send_attachment_to_active_channel = require('../helpers/send_attachment_to_active_channel');
+const generate_battle_attachment = require('../helpers/generate_battle_attachment');
 
-module.exports = (message, client, enemy) => {
+module.exports = async (message, client, enemy) => {
     const bot_store = new Storage('./data/bot_data');
     const faction_store = new Storage('./data/faction_data');
     if(!message) return;
@@ -43,5 +42,7 @@ module.exports = (message, client, enemy) => {
         return;
     }
 
-    send_message_to_active_channel(`A skirmish has broken out between two factions: ${to_faction_name(player.faction)} has launched an assault on ${to_faction_name(enemy)}`, client);
+    const battle_message = `A skirmish has broken out between two factions: ${to_faction_name(player.faction)} has launched an assault on ${to_faction_name(enemy)}`;
+    const attachment = await generate_battle_attachment(player.faction, enemy);
+    send_attachment_to_active_channel(battle_message, attachment, client);
 }
