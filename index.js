@@ -20,6 +20,7 @@ const train = require('./commands/train');
 const battle = require('./commands/battle');
 const initialize_factions = require('./helpers/initialize_factions');
 const faction_info = require('./commands/faction_info');
+const cast = require('./commands/cast');
 
 // const killbot = require('./commands/killbot');
 
@@ -58,14 +59,17 @@ client.on('message', message => {
         case "battle":
             battle(message, client, args.shift());
             break;
+        case "cast":
+            cast(message, client, args.shift(), args.shift());
+            break;
         case "faction_info":
             faction_info(message);
             break;
-        // case "killbot":
-        //     killbot(client);
-        //     break;
+            // case "killbot":
+            //     killbot(client);
+            //     break;
         default:
-            message.author.send("`"+ message.content +"` is not a valid command");
+            message.author.send("`" + message.content + "` is not a valid command");
             break;
     }
 });

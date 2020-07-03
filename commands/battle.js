@@ -69,6 +69,14 @@ module.exports = async (message, client, argument) => {
         return;
     }
 
+    const factionIsAlreadyCasting = faction_state.isCasting();
+    if(factionIsAlreadyCasting) {
+        const existing_enemy = faction_state.castingAgainstWho();
+        const pending_spell = faction_state.castingWhichSpell();
+        message.author.send("You are already casting " + pending_spell + " on "+ to_faction_name(existing_enemy) + ". You can't cast and battle on the same day.\nRun `!cast cancel` if you'd like to cancel the pending spell, and try casting a new one.");
+        return;
+    }
+
     faction_state.battle(enemy);
 
     const battle_message = `${to_resource_name(player.faction, "citizens")} have been mobilized: ${to_faction_name(player.faction)} has launched an assault on ${to_faction_name(enemy)} \nAt the end of the day, when resources are tallied. We will see who comes out on top.`;

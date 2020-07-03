@@ -15,6 +15,10 @@ module.exports = class FactionState {
         return this.stateMachine.state === "battling";
     }
 
+    isCasting() {
+        return this.stateMachine.state === "casting";
+    }
+
     isIdle() {
         return this.stateMachine.state === "idle";
     }
@@ -24,8 +28,22 @@ module.exports = class FactionState {
         this.stateMachine.battle();
     }
 
+    castSpell(target_faction_key, spell_key) {
+        this.state_store.put(this.faction_key + ".castingAgainst", target_faction_key);
+        this.state_store.put(this.faction_key + ".spell", spell_key);
+        this.stateMachine.castSpell();
+    }
+
     battlingWho() {
-        return this.state_store.get(this.faction_key + ".battling")
+        return this.state_store.get(this.faction_key + ".battling");
+    }
+
+    castingAgainstWho() {
+        return this.state_store.get(this.faction_key + ".castingAgainst");
+    }
+
+    castingWhichSpell() {
+        return this.state_store.get(this.faction_key + ".spell");
     }
 
     cancelBattle () {
@@ -38,6 +56,18 @@ module.exports = class FactionState {
         this.stateMachine.finishBattle();
     }
 
+    cancelSpell () {
+        this.state_store.remove(this.faction_key + ".castingAgainst");
+        this.state_store.remove(this.faction_key + ".spell");
+        this.stateMachine.cancelSpell();
+    }
+
+    finishSpell () {
+        this.state_store.remove(this.faction_key + ".castingAgainst");
+        this.state_store.remove(this.faction_key + ".spell");
+        this.stateMachine.finishSpell();
+    }
+
     onBattle = () =>  {
         this.saveCurrentState();
     }
@@ -47,6 +77,18 @@ module.exports = class FactionState {
     }
 
     onFinishBattle = () => {
+        this.saveCurrentState();
+    }
+
+    onCastSpell = () =>  {
+        this.saveCurrentState();
+    }
+
+    onCancelSpell = () =>  {
+        this.saveCurrentState();
+    }
+
+    onFinishSpell = () => {
         this.saveCurrentState();
     }
 
@@ -65,14 +107,20 @@ module.exports = class FactionState {
             init: "idle",
             transitions: [
               { name: 'battle', from: 'idle',  to: 'battling' },
+              { name: 'castSpell', from: 'idle',  to: 'casting' },
               { name: 'cancelBattle', from: 'battling',  to: 'idle' },
               { name: 'finishBattle', from: 'battling', to: 'idle' },
+              { name: 'cancelSpell', from: 'casting',  to: 'idle' },
+              { name: 'finshSpell', from: 'casting', to: 'idle' },
               { name: 'goto', from: '*', to: function(s) { return s } }
             ],
             methods: {
               onBattle: this.onBattle,
               onCancelBattle: this.onCancelBattle,
-              onFinishBattle: this.onFinishBattle
+              onFinishBattle: this.onFinishBattle,
+              onCastSpell: this.onCastSpell,
+              onCancelSpell: this.onCancelSpell,
+              onFinishSpell: this.onFinishSpell,
             }
         });
 
