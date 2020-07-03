@@ -86,6 +86,15 @@ module.exports = async (message, client, argument, target) => {
         return;
     }
 
+    const level_required_to_cast = all_spells[spell].magic_level_requirement;
+    const faction_store = new AvalwynStorage().faction_storage;
+    const faction = faction_store.get(player.faction);
+    const actual_magic_level = faction.stats.magic;
+    if (level_required_to_cast > actual_magic_level) {
+        message.author.send(`Your faction's MAGIC has to be level ${level_required_to_cast} in order to cast **${all_spells[spell].name}**. Train up homies. :man_mage:`);
+        return;
+    }
+
     faction_state.castSpell(enemy, spell);
 
     const casting_message = `You've chosen to cast ${all_spells[spell].name} on ${to_faction_name(enemy)}`;
