@@ -19,6 +19,7 @@ const setup_scheduled_jobs = require('./scheduled_jobs/setup_scheduled_jobs');
 const train = require('./commands/train');
 const battle = require('./commands/battle');
 const initialize_factions = require('./helpers/initialize_factions');
+const faction_info = require('./commands/faction_info');
 
 // const killbot = require('./commands/killbot');
 
@@ -56,6 +57,9 @@ client.on('message', message => {
             break;
         case "battle":
             battle(message, client, args.shift());
+            break;
+        case "faction_info":
+            faction_info(message);
             break;
         // case "killbot":
         //     killbot(client);
