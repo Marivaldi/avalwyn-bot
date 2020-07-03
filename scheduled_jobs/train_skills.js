@@ -25,7 +25,7 @@ module.exports = async (faction_store, client) => {
 
         const skill_key = faction.currently_training;
         if (!can_train_skill(faction, skill_key)) {
-            send_message_to_faction_leaders_with_store(`${to_faction_name(faction_key)} does not have at least ${resource_requirement_text(skill_key)}`, faction_store, faction_key, client);
+            send_message_to_faction_leaders_with_store(`${to_faction_name(faction_key)} does not have at least ${resource_requirement_text(faction_key, skill_key)}`, faction_store, faction_key, client);
             continue;
         }
 

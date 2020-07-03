@@ -9,10 +9,10 @@
         "might": 1
       },
       "resources": {
-        "gold": 50,
-        "ore": 0,
-        "food": 20,
-        "citizens": 30
+        "gold": 10,
+        "ore": 10,
+        "food": 10,
+        "citizens": 10
       }
     },
     "the_north": {
@@ -25,10 +25,10 @@
         "might": 0
       },
       "resources": {
-        "gold": 50,
-        "ore": 0,
-        "food": 20,
-        "citizens": 30
+        "gold": 10,
+        "ore": 10,
+        "food": 10,
+        "citizens": 10
       }
     },
     "krackan": {
@@ -41,10 +41,10 @@
         "might": 2
       },
       "resources": {
-        "gold": 50,
-        "ore": 0,
-        "food": 20,
-        "citizens": 30
+        "gold": 10,
+        "ore": 10,
+        "food": 10,
+        "citizens": 10
       }
     },
     "sagemoor": {
@@ -68,15 +68,15 @@
       "leaders": [],
       "diplomats": [],
       "stats": {
-        "fortitude": 1,
-        "magic": 1,
-        "might": 1
+        "fortitude": 0,
+        "magic": 3,
+        "might": 0
       },
       "resources": {
-        "gold": 50,
-        "ore": 0,
-        "food": 20,
-        "citizens": 30
+        "gold": 10,
+        "ore": 10,
+        "food": 10,
+        "citizens": 10
       }
     }
   }
