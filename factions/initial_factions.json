@@ -4,9 +4,9 @@
       "leaders": [],
       "diplomats": [],
       "stats": {
-        "fortitude": 1,
-        "magic": 1,
-        "might": 1
+        "fortitude": 0,
+        "magic": 0,
+        "might": 0
       },
       "resources": {
         "gold": 10,
@@ -20,8 +20,8 @@
       "leaders": [],
       "diplomats": [],
       "stats" : {
-        "fortitude": 2,
-        "magic": 1,
+        "fortitude": 0,
+        "magic": 0,
         "might": 0
       },
       "resources": {
@@ -36,9 +36,9 @@
       "leaders": [],
       "diplomats": [],
       "stats": {
-        "fortitude": 1,
+        "fortitude": 0,
         "magic": 0,
-        "might": 2
+        "might": 0
       },
       "resources": {
         "gold": 10,
@@ -52,15 +52,15 @@
       "leaders": [],
       "diplomats": [],
       "stats": {
-        "fortitude": 1,
-        "magic": 1,
-        "might": 1
+        "fortitude": 0,
+        "magic": 0,
+        "might": 0
       },
       "resources": {
-        "gold": 50,
-        "ore": 0,
-        "food": 20,
-        "citizens": 30
+        "gold": 10,
+        "ore": 10,
+        "food": 10,
+        "citizens": 10
       }
     },
     "the_hive": {
@@ -69,7 +69,7 @@
       "diplomats": [],
       "stats": {
         "fortitude": 0,
-        "magic": 3,
+        "magic": 0,
         "might": 0
       },
       "resources": {

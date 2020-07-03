@@ -29,7 +29,8 @@ module.exports = async (faction_store, client) => {
             continue;
         }
 
-        const skill_increase = random.int(1, 3);
+        // Magic can only ever increase by 1 point because it is powerful.
+        const skill_increase = (skill_key === "magic") ? 1 : random.int(1, 3);
         const resource_requirement = get_resource_requirement(skill_key);
         const resource_key_to_decrease = resource_requirement.resource;
         const resource_decrease = resource_requirement.amount;

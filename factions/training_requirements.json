@@ -5,10 +5,10 @@
     },
     "magic" : {
         "resource" : "gold",
-        "amount" : 10
+        "amount" : 40
     },
     "fortitude" : {
         "resource" : "ore",
-        "amount" : 6
+        "amount" : 5
     }
 }
