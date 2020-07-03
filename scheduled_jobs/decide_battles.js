@@ -61,10 +61,12 @@ module.exports = async (faction_store, client) => {
                 const difference = attack_check - defense_check;
                 const total_life_loss = difference * loss_modifier;
                 enemy.resources.citizens -= total_life_loss;
+                enemy.resources.citizens = (enemy.resources.citizens < 0) ? 0 : enemy.resources.citizens;
+                const total_loss_text = (enemy.resources.citizens === 0) ? "the rest of their" : total_life_loss;
                 const gold_gain = random.int(1, 20);
                 faction.resources.gold += gold_gain;
-                const life_loss_text = `${to_faction_name(enemy_faction_key)} lost ${total_life_loss} ${to_resource_name(enemy_faction_key, "citizens")}.`;
-                const gold_gain_text = `${to_faction_name(faction_key)} gained ${total_life_loss} ${to_resource_name(faction_key, "gold")}.`;
+                const life_loss_text = `${to_faction_name(enemy_faction_key)} lost ${total_loss_text} ${to_resource_name(enemy_faction_key, "citizens")}.`;
+                const gold_gain_text = `${to_faction_name(faction_key)} gained ${gold_gain} ${to_resource_name(faction_key, "gold")}.`;
                 embed.addFields({
                     name: `${to_faction_name(faction_key)} Broke the Defenses`,
                     value: `${roll_text}\n${life_loss_text}\n${gold_gain_text}`
@@ -77,7 +79,9 @@ module.exports = async (faction_store, client) => {
                 const difference = defense_check - attack_check;
                 const total_life_loss = difference * loss_modifier;
                 faction.resources.citizens -= total_life_loss
-                const life_loss_text = `${to_faction_name(faction_key)} lost ${total_life_loss} ${to_resource_name(faction_key, "citizens")}.`;
+                faction.resources.citizens = (faction.resources.citizens < 0) ? 0 : faction.resources.citizens;
+                const total_loss_text = (faction.resources.citizens === 0) ? "the rest of their" : total_life_loss;
+                const life_loss_text = `${to_faction_name(faction_key)} lost ${total_loss_text} ${to_resource_name(faction_key, "citizens")}.`;
                 embed.addFields({
                     name: `${to_faction_name(faction_key)} Failed Their Assault.`,
                     value: `${roll_text}\n${life_loss_text}`

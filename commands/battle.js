@@ -78,6 +78,16 @@ module.exports = async (message, client, argument) => {
         return;
     }
 
+    const citizens_required_for_battle = 5;
+    const faction_store = new AvalwynStorage().faction_storage;
+    const faction = faction_store.get(player.faction);
+    const actual_number_of_citizens = faction.resources.citizens;
+    if (citizens_required_for_battle > actual_number_of_citizens) {
+        message.author.send(`You need at least ${citizens_required_for_battle} ${to_resource_name(player.faction, "citizens")} to launch an attack.\nBide your time and stay on the defensive.`);
+        return;
+    }
+
+
     faction_state.battle(enemy);
 
     const battle_message = `${to_resource_name(player.faction, "citizens")} have been mobilized: ${to_faction_name(player.faction)} has launched an assault on ${to_faction_name(enemy)} \nAt the end of the day, when resources are tallied. We will see who comes out on top.`;
