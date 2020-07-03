@@ -18,11 +18,13 @@ const active_channel = require('./commands/active_channel');
 const setup_scheduled_jobs = require('./scheduled_jobs/setup_scheduled_jobs');
 const train = require('./commands/train');
 const battle = require('./commands/battle');
+const initialize_factions = require('./helpers/initialize_factions');
 
 // const killbot = require('./commands/killbot');
 
 client.once('ready', async () => {
     setup_scheduled_jobs(client);
+    initialize_factions();
 });
 
 client.on('message', message => {
