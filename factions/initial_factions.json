@@ -46,5 +46,37 @@
         "food": 20,
         "citizens": 30
       }
+    },
+    "sagemoor": {
+      "name": "Mayor Humbaba & Sagemoor",
+      "leaders": [],
+      "diplomats": [],
+      "stats": {
+        "fortitude": 1,
+        "magic": 1,
+        "might": 1
+      },
+      "resources": {
+        "gold": 50,
+        "ore": 0,
+        "food": 20,
+        "citizens": 30
+      }
+    },
+    "the_hive": {
+      "name": "The Hive",
+      "leaders": [],
+      "diplomats": [],
+      "stats": {
+        "fortitude": 1,
+        "magic": 1,
+        "might": 1
+      },
+      "resources": {
+        "gold": 50,
+        "ore": 0,
+        "food": 20,
+        "citizens": 30
+      }
     }
   }

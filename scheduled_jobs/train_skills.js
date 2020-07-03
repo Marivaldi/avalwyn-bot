@@ -7,7 +7,7 @@ const send_message_to_faction_leaders = require('../helpers/send_message_to_fact
 const skill_training = require('../texts/skill_training.json');
 const send_message_to_faction_leaders_with_store = require('../helpers/send_message_to_faction_leaders_with_store');
 
-module.exports = (faction_store, client) => {
+module.exports = async (faction_store, client) => {
     valid_factions.forEach((faction_key) => {
         const faction = faction_store.get(faction_key);
         if (faction) {
@@ -34,4 +34,7 @@ module.exports = (faction_store, client) => {
         }
     });
 
+    return new Promise((resolve, reject) => {
+        resolve('ok')
+    });
 }

@@ -1,12 +1,6 @@
-module.exports = (command) => {
-    switch(command) {
-        case "the_north":
-            return "Douglass & The North";
-        case "krackan":
-            return "Allrender & the People of Krackan";
-        case "old_country":
-            return "Glad, Vlad & Their Old Country";
-        default:
-            return "an invalid faction name";
-    }
+const faction_text = require('./faction_text.json');
+
+module.exports = (faction_key) => {
+    if(!faction_key in faction_text) return "BAD FACTION KEY";
+    return faction_text[faction_key].name;
 }

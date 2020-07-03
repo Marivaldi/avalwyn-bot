@@ -1,15 +1,18 @@
 const PlayerState = require("../PlayerState");
+const FactionState = require("../FactionState");
 const Storage = require('node-storage');
 const valid_factions = require("../factions/valid_factions.json");
 const to_faction_name = require("../texts/to_faction_name");
 const send_attachment_to_active_channel = require('../helpers/send_attachment_to_active_channel');
 const generate_battle_attachment = require('../helpers/generate_battle_attachment');
+const to_resource_name = require("../texts/to_resource_name");
+const generate_cancelled_battle_attachment = require("../helpers/generate_cancelled_battle_attachment");
+const special_arguments = ["cancel"]
 
-module.exports = async (message, client, enemy) => {
-    const bot_store = new Storage('./data/bot_data');
-    const faction_store = new Storage('./data/faction_data');
+module.exports = async (message, client, argument) => {
     if(!message) return;
 
+    const bot_store = new Storage('./data/bot_data');
     const player = bot_store.get(message.author.id);
 
     if(!player) {
@@ -21,6 +24,22 @@ module.exports = async (message, client, enemy) => {
         message.author.send("Looks like you're not currently a part of any factions. Run `!join` followed by one of these faction names: `" + valid_factions.join(' ') +"`");
         return;
     }
+
+    const faction_state = new FactionState(player.faction);
+    const argument_is_special_case = special_arguments.includes(argument);
+    if(argument_is_special_case) {
+        switch(argument) {
+            case "cancel":
+                cancel_battle(message, faction_state, player, client);
+                break;
+            default:
+                break;
+        }
+
+        return;
+    }
+
+    const enemy = argument;
 
     const not_a_valid_faction = !valid_factions.includes(enemy);
     if(not_a_valid_faction) {
@@ -37,13 +56,36 @@ module.exports = async (message, client, enemy) => {
     }
 
     const player_state = new PlayerState(message.author.id);
-    const isInProperState = player_state.currentState() === "generalPlay";
-    if(!isInProperState) {
+    const playerIsInProperState = player_state.currentState() === "generalPlay";
+    if(!playerIsInProperState) {
         message.author.send("Something happened. Probably bad code. Let Shayne know this happened.");
         return;
     }
 
-    const battle_message = `A skirmish has broken out between two factions: ${to_faction_name(player.faction)} has launched an assault on ${to_faction_name(enemy)}`;
+    const factionIsAlreadyBattling = faction_state.isBattling();
+    if(factionIsAlreadyBattling) {
+        const existing_enemy = faction_state.battlingWho();
+        message.author.send("You already have a battle pending with "+ to_faction_name(existing_enemy) + ". Run `!battle cancel` if you'd like to withdraw your troops from the battlefield.");
+        return;
+    }
+
+    faction_state.battle(enemy);
+
+    const battle_message = `${to_resource_name(player.faction, "citizens")} have been mobilized: ${to_faction_name(player.faction)} has launched an assault on ${to_faction_name(enemy)} \nAt the end of the day, when resources are tallied. We will see who comes out on top.`;
     const attachment = await generate_battle_attachment(player.faction, enemy);
     send_attachment_to_active_channel(battle_message, attachment, client);
+}
+
+async function cancel_battle(message, faction_state, player, client) {
+    if(!faction_state.isBattling()) {
+        message.author.send("The troops are already at home...");
+        return;
+    }
+    const enemy = faction_state.battlingWho();
+    const battle_message = `${to_resource_name(player.faction, "citizens")} are leaving the battlefield: ${to_faction_name(player.faction)} has cancelled their assault on ${to_faction_name(enemy)}.`;
+    const attachment = await generate_cancelled_battle_attachment(player.faction, enemy);
+    send_attachment_to_active_channel(battle_message, attachment, client);
+
+    faction_state.cancelBattle();
+    message.author.send("We're bringing the troops home...");
 }

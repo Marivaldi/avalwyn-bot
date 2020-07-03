@@ -8,24 +8,37 @@ const resource_generation = require('../texts/resource_generation.json');
 const to_faction_name = require('../texts/to_faction_name');
 const to_resource_name = require('../texts/to_resource_name');
 const Storage = require('node-storage');
+const FactionState = require('../FactionState');
 
 module.exports = async (faction_store, client) => {
     const embed = new Discord.MessageEmbed()
-            .setColor(resource_generation.color)
-            .setTitle(resource_generation.title)
-            .setDescription(resource_generation.description);
+        .setColor(resource_generation.color)
+        .setTitle(resource_generation.title)
+        .setDescription(resource_generation.description);
 
     valid_factions.forEach((faction_key) => {
-        const resource_key = pickRandom(valid_resources, {count: 1});
-        const amount = random.int(2, 15);
-        const faction = faction_store.get(faction_key);
-        if(faction) {
-            faction.resources[resource_key] += amount;
-            faction_store.put(faction_key, faction);
-            embed.addFields(
-                { name: to_faction_name(faction_key), value: `Gained ${amount} ${to_resource_name(faction_key, resource_key)}.` },
-            )
+        const faction_state = new FactionState(faction_key);
+        if (faction_state.isBattling()) {
+            embed.addFields({
+                name: to_faction_name(faction_key),
+                value: `Was busy on the battlefield.`
+            }, )
+        } else {
+            const resource_key = pickRandom(valid_resources, {
+                count: 1
+            });
+            const amount = random.int(2, 15);
+            const faction = faction_store.get(faction_key);
+            if (faction) {
+                faction.resources[resource_key] += amount;
+                faction_store.put(faction_key, faction);
+                embed.addFields({
+                    name: to_faction_name(faction_key),
+                    value: `Gained ${amount} ${to_resource_name(faction_key, resource_key)}.`
+                }, )
+            }
         }
+
     });
 
     embed.setTimestamp();

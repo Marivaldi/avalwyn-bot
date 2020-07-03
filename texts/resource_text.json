@@ -16,5 +16,17 @@
         "citizens": "Gnomes",
         "food": "Glad Cakes",
         "ore": "Irons from Old Country, yes?"
+    },
+    "sagemoor": {
+        "gold": "Gold",
+        "citizens": "Citizens",
+        "food": "Shipments of Food",
+        "ore": "Mountain Ores"
+    },
+    "the_hive": {
+        "gold": "Gold",
+        "citizens": "Hive Connections",
+        "food": "Brains",
+        "ore": "Space Rocks"
     }
 }
