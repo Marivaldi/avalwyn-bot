@@ -11,12 +11,13 @@
   "dependencies": {
     "canvas": "^2.6.1",
     "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "javascript-state-machine": "^3.1.0",
     "node-cron": "^2.0.3",
     "node-storage": "0.0.9",
     "pick-random": "^2.0.0",
     "random": "^2.2.0",
-    "request": "^2.88.2",
-    "javascript-state-machine": "^3.1.0"
+    "request": "^2.88.2"
   },
   "devDependencies": {}
 }
