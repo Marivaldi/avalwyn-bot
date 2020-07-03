@@ -21,10 +21,12 @@ const battle = require('./commands/battle');
 const initialize_factions = require('./helpers/initialize_factions');
 const faction_info = require('./commands/faction_info');
 const cast = require('./commands/cast');
+const AvalwynStorage = require("./AvalwynStorage");
 
 // const killbot = require('./commands/killbot');
 
 client.once('ready', async () => {
+    new AvalwynStorage();
     setup_scheduled_jobs(client);
     initialize_factions();
 });

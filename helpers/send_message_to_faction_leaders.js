@@ -1,7 +1,7 @@
-const Storage = require('node-storage');
+const AvalwynStorage = require('../AvalwynStorage');
 
 module.exports = (message, faction_key, client) => {
-    const faction_store = new Storage('./data/faction_data');
+    const faction_store = new AvalwynStorage().faction_storage;
     const faction = faction_store.get(faction_key);
     if(!faction) return;
 

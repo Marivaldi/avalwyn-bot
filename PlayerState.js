@@ -1,10 +1,10 @@
 var StateMachine = require('javascript-state-machine');
-var Storage = require('node-storage');
+const AvalwynStorage = require("./AvalwynStorage");
 
 
 module.exports = class PlayerState {
     stateMachine = null;
-    state_store = new Storage('./data/state_data');
+    state_store = new AvalwynStorage().state_storage;
     user_id;
 
     constructor(user_id) {

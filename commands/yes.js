@@ -1,10 +1,10 @@
 const PlayerState = require("../PlayerState");
 const faction_selection_embed = require("../embeds/faction_selection_embed");
-const Storage = require('node-storage');
+const AvalwynStorage = require("../AvalwynStorage");
 
 
 module.exports = (message) => {
-    const bot_store = new Storage('./data/bot_data');
+    const bot_store = new AvalwynStorage().bot_storage;
     if(!message) return;
 
     const player_state = new PlayerState(message.author.id);

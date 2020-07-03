@@ -1,7 +1,7 @@
-const Storage = require('node-storage');
+const AvalwynStorage = require("../AvalwynStorage");
 
 module.exports = (channel) => {
-    const active_channel_store = new Storage('./data/active_channel_data');
+    const active_channel_store = new AvalwynStorage().active_channel_storage;
     if(!channel) return;
 
     if(channel.type === "dm") return;

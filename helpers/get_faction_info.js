@@ -1,15 +1,15 @@
 const Discord = require('discord.js');
-const Storage = require('node-storage');
 const faction_text = require('../texts/faction_text.json');
 const to_resource_name = require('../texts/to_resource_name');
 const faction_images = require('../factions/faction_images.json');
 const pickRandom = require('pick-random');
+const AvalwynStorage = require('../AvalwynStorage');
 
 
 module.exports = (faction_key) => {
     if(!faction_key) return "You haven't joined a faction yet.";
 
-    const faction_store = new Storage('./data/faction_data');
+    const faction_store = new AvalwynStorage().faction_storage;
     const faction = faction_store.get(faction_key);
     const is_valid_faction = (faction_key in faction_text);
     if(!faction || !is_valid_faction) return "Somehow your faction isn't valid... tell Shayne.";

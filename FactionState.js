@@ -1,9 +1,9 @@
 var StateMachine = require('javascript-state-machine');
-var Storage = require('node-storage');
+const AvalwynStorage = require("./AvalwynStorage");
 
 module.exports = class FactionState {
     stateMachine = null;
-    state_store = new Storage('./data/state_data');
+    state_store = new AvalwynStorage().state_storage;
     faction_key;
 
     constructor(faction_key) {
@@ -111,7 +111,7 @@ module.exports = class FactionState {
               { name: 'cancelBattle', from: 'battling',  to: 'idle' },
               { name: 'finishBattle', from: 'battling', to: 'idle' },
               { name: 'cancelSpell', from: 'casting',  to: 'idle' },
-              { name: 'finshSpell', from: 'casting', to: 'idle' },
+              { name: 'finishSpell', from: 'casting', to: 'idle' },
               { name: 'goto', from: '*', to: function(s) { return s } }
             ],
             methods: {

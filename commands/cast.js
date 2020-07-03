@@ -1,16 +1,17 @@
 const PlayerState = require("../PlayerState");
 const FactionState = require("../FactionState");
-const Storage = require('node-storage');
 const valid_factions = require("../factions/valid_factions.json");
 const to_faction_name = require("../texts/to_faction_name");
 const send_message_to_faction_leaders = require('../helpers/send_message_to_faction_leaders');
 const all_spells = require('../factions/spells.json');
+const AvalwynStorage = require("../AvalwynStorage");
 const special_arguments = ["cancel"]
 
 module.exports = async (message, client, argument, target) => {
     if(!message) return;
 
-    const bot_store = new Storage('./data/bot_data');
+    const bot_store = new AvalwynStorage().bot_storage;
+
     const player = bot_store.get(message.author.id);
 
     if(!player) {

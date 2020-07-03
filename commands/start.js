@@ -1,10 +1,10 @@
 const start = require('../texts/start.json');
 const Discord = require('discord.js');
 const PlayerState = require("../PlayerState");
-const Storage = require('node-storage');
+const AvalwynStorage = require("../AvalwynStorage");
 
 module.exports = (message) => {
-    const active_channel_store = new Storage('./data/active_channel_data');
+    const active_channel_store = new AvalwynStorage().active_channel_storage;
     if(!message) return;
 
     const channel_id = active_channel_store.get("active_channel_id");

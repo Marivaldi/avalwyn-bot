@@ -11,8 +11,8 @@ const resource_requirement_text = require('../helpers/resource_requirement_text'
 const get_resource_requirement = require('../helpers/get_resource_requirement');
 
 module.exports = async (faction_store, client) => {
-    const t = new Date();
-    console.log("Training Skills...", t.toISOString());
+    const d = new Date();
+    console.log("Training Resources...", d.toLocaleString('en-US', { timeZone: 'America/New_York' }));
 
     for (let i = 0; i < valid_factions.length; i++) {
         const faction_key = valid_factions[i];

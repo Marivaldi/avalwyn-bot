@@ -7,7 +7,6 @@ const random = require('random');
 const resource_generation = require('../texts/resource_generation.json');
 const to_faction_name = require('../texts/to_faction_name');
 const to_resource_name = require('../texts/to_resource_name');
-const Storage = require('node-storage');
 const FactionState = require('../FactionState');
 
 module.exports = async (faction_store, client) => {
@@ -16,8 +15,10 @@ module.exports = async (faction_store, client) => {
         .setTitle(resource_generation.title)
         .setDescription(resource_generation.description);
 
-    const t = new Date();
-    console.log("Generating Resources...", t.toISOString());
+    const d = new Date();
+    console.log("Generating Resources...", d.toLocaleString('en-US', {
+        timeZone: 'America/New_York'
+    }));
     valid_factions.forEach((faction_key) => {
         const faction_state = new FactionState(faction_key);
         if (faction_state.isBattling()) {

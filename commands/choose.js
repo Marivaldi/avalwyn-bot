@@ -1,14 +1,13 @@
 const PlayerState = require("../PlayerState");
 const to_faction_name = require("../texts/to_faction_name");
 const valid_factions = require("../factions/valid_factions.json");
-
-const Storage = require('node-storage');
 const send_message_to_active_channel = require('../helpers/send_message_to_active_channel');
 const add_leader_to_faction = require('../helpers/add_leader_to_faction');
+const AvalwynStorage = require("../AvalwynStorage");
 
 
 module.exports = (message, choice, client) => {
-    const bot_store = new Storage('./data/bot_data');
+    const bot_store = new AvalwynStorage().bot_storage;
     if(!message) return;
 
     const player_state = new PlayerState(message.author.id);

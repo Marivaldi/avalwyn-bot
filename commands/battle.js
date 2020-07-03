@@ -1,18 +1,19 @@
 const PlayerState = require("../PlayerState");
 const FactionState = require("../FactionState");
-const Storage = require('node-storage');
 const valid_factions = require("../factions/valid_factions.json");
 const to_faction_name = require("../texts/to_faction_name");
 const send_attachment_to_active_channel = require('../helpers/send_attachment_to_active_channel');
 const generate_battle_attachment = require('../helpers/generate_battle_attachment');
 const to_resource_name = require("../texts/to_resource_name");
 const generate_cancelled_battle_attachment = require("../helpers/generate_cancelled_battle_attachment");
+const AvalwynStorage = require("../AvalwynStorage");
 const special_arguments = ["cancel"]
 
 module.exports = async (message, client, argument) => {
     if(!message) return;
 
-    const bot_store = new Storage('./data/bot_data');
+    const bot_store = new AvalwynStorage().bot_storage;
+
     const player = bot_store.get(message.author.id);
 
     if(!player) {
