@@ -25,7 +25,18 @@ module.exports = (faction_key) => {
         .setDescription(my_faction_text.description)
         .setThumbnail(faction_image[0]);
 
-    const resource_keys = Object.keys(faction.resources)
+    const stat_keys = Object.keys(faction.stats);
+
+    for(let i = 0 ; i < stat_keys.length; i++) {
+        const stat_key = stat_keys[i];
+        embed.addFields({
+            name: stat_key.toUpperCase(),
+            value: faction.stats[stat_key],
+            inline: true
+        })
+    }
+
+    const resource_keys = Object.keys(faction.resources);
 
     for(let i = 0 ; i < resource_keys.length; i++) {
         const resource_key = resource_keys[i];
@@ -35,6 +46,7 @@ module.exports = (faction_key) => {
             inline: true
         })
     }
+
 
     embed.setTimestamp()
 
