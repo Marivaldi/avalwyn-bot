@@ -16,6 +16,8 @@ module.exports = async (faction_store, client) => {
         .setTitle(resource_generation.title)
         .setDescription(resource_generation.description);
 
+    const t = new Date();
+    console.log("Generating Resources...", t.toISOString());
     valid_factions.forEach((faction_key) => {
         const faction_state = new FactionState(faction_key);
         if (faction_state.isBattling()) {

@@ -1,0 +1,14 @@
+{
+    "might" : {
+        "resource" : "food",
+        "amount" : 5
+    },
+    "magic" : {
+        "resource" : "gold",
+        "amount" : 10
+    },
+    "fortitude" : {
+        "resource" : "ore",
+        "amount" : 6
+    }
+}

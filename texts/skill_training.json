@@ -5,17 +5,23 @@
         "might": {
             "the_north": "The sounds of Northern Steel fill the air. Mighty warriors of The North train their might.",
             "krackan": "A festival of strength is thrown. The Lizardfolk brethren train long days in the great sand pits.",
-            "old_country": "For Old Country, Brudder. We train our people to be strong!"
+            "old_country": "For Old Country, Brudder. We train our people to be strong!",
+            "sagemoor" : "Humbaba spends long days training the guards alongside Captain Runestone.",
+            "the_hive" : "Our might is in our strategy. Our might is our numbers!"
         },
         "fortitude" : {
             "the_north": "Northmen fortify their icy walls that no man dare challenge.",
             "krackan": "The best offense is a good defense. The People of Krackan make sturdy their outpost.",
-            "old_country": "Very small, yes? AND STRONG, brother. Old Country train their defenses."
+            "old_country": "Very small, yes? AND STRONG, brother. Old Country train their defenses.",
+            "sagemoor" : "A good door keeps the enemy on the other side. Humbaba and Sneev spend the day fortifying",
+            "the_hive" : "We protect that which is sacred. The Hive. The MIND. XYRN-9."
         },
         "magic": {
             "the_north": "The Northern Wizards have toiled in their towers. They're power ever growing.",
             "krackan": "The Shamans of Krackan summon the spirits of War and Power.",
-            "old_country": "Gnomes Wizards do much training. AND Glaaad bring them cakes. :cake:"
+            "old_country": "Gnomes Wizards do much training. AND Glaaad bring them cakes. :cake:",
+            "sagemoor" : "Malykris and gnomes of Sagemoor spend a day burning through components to learn new spells.",
+            "the_hive" : "Arcane Intelligence, rise! We attach our minds to the weave, that we might grow in power!"
         }
     }
 }
