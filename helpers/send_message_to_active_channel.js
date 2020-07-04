@@ -1,6 +1,6 @@
 const AvalwynStorage = require('../AvalwynStorage');
 
-module.exports = (message, client) => {
+module.exports = async (message, client) => {
     const active_channel_store = new AvalwynStorage().active_channel_storage;
     if(!message) return;
 
@@ -11,4 +11,7 @@ module.exports = (message, client) => {
     if (!activeChannel) return;
 
     activeChannel.send(message);
+    return new Promise((resolve, reject) => {
+        resolve('ok')
+    });
 }
