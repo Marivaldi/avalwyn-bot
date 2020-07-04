@@ -1,0 +1,72 @@
+{
+    "danson": {
+        "embed_color": "#3a243b",
+        "name": "Danson Smithers",
+        "role" : "Naughty Boy",
+        "dialogue" : [
+            "If you promise not to take me back to the Naughty Boy Academy, I can help you by giving you some of my sons."
+        ],
+        "effect": "While you have Danson equipped, half of your enemy's fallen soldiers will join your ranks post-battle.",
+        "thumbnail": ""
+    },
+    "courage": {
+        "embed_color": "#b19cd9",
+        "name": "Courage",
+        "role" : "Master of Boulders",
+        "dialogue" : [
+            "Hey. I got a little lost on the road. If you let me in, I'm pretty good with stones."
+        ],
+        "effect": "While you have Courage equipped, you generate 5 ore per day in addition to normal resource production.",
+        "thumbnail": ""
+    },
+    "colt": {
+        "embed_color": "#808080",
+        "name": "Colt Lonestar Jackson",
+        "role" : "Sharpshooter",
+        "dialogue" : [
+            "Put me in the fight if you wanna to win, partner."
+        ],
+        "effect": "While you have Colt equipped, your MIGHT increases by 3.",
+        "thumbnail": ""
+    },
+    "mercedes": {
+        "embed_color": "#DAA520",
+        "name": "Mercedes Lite-Touch",
+        "role" : "Chief Advisor",
+        "dialogue" : [
+            "So, do you, like, want me to turn this place around or what?"
+        ],
+        "effect": "While you have Mercedes equipped, your gold production is doubled.",
+        "thumbnail": ""
+    },
+    "falcon": {
+        "embed_color": "#F8F8FF",
+        "name": "Falcon",
+        "role" : "Eye In the Sky",
+        "dialogue" : [
+            "I could use place to rest my head. Maybe I do some flying for you. Spy on enemy for you, no?"
+        ],
+        "effect": "While you have Falcon equipped, you can run the `!spy [faction]` command to see another faction's information.",
+        "thumbnail": ""
+    },
+    "dimir" : {
+        "embed_color": "#f28e1c",
+        "name":"Dimir Lorgnar",
+        "role" : "Master Brewer",
+        "dialogue" : [
+            "Are you familiar with the Lorgnar name? No? Well let me introduce myself..."
+        ],
+        "effect": "While you have Dimir equipped, a random amount of citizens will join your faction each day.",
+        "thumbnail": ""
+    },
+    "ricky" : {
+        "embed_color": "#006994",
+        "name":"Arrick 'Ricky' Balphree",
+        "role" : "Resident Red Shirt",
+        "dialogue" : [
+            "Hey, y'all. I've been wanderin' 'round a bit and could really use a new home."
+        ],
+        "effect": "While you have Ricky equipped, you lose less citizens if you lose defensive battles.",
+        "thumbnail": "https://i.imgur.com/30Bzk5b.jpg"
+    }
+}

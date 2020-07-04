@@ -22,6 +22,8 @@ const initialize_factions = require('./helpers/initialize_factions');
 const faction_info = require('./commands/faction_info');
 const cast = require('./commands/cast');
 const AvalwynStorage = require("./AvalwynStorage");
+const hire = require('./commands/hire');
+const fire = require('./commands/fire');
 
 // const killbot = require('./commands/killbot');
 
@@ -67,11 +69,14 @@ client.on('message', message => {
         case "faction_info":
             faction_info(message);
             break;
-            // case "killbot":
-            //     killbot(client);
-            //     break;
+        case "hire":
+            hire(message, client, args.shift());
+            break;
+        case "fire":
+            fire(message, client, args.shift());
+            break;
         default:
-            message.author.send("`" + message.content + "` is not a valid command");
+            message.channel.send("`" + message.content + "` is not a valid command");
             break;
     }
 });
