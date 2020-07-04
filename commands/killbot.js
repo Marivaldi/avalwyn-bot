@@ -1,8 +1,9 @@
 const Storage = require('node-storage');
+const send_message_to_active_channel = require('../helpers/send_message_to_active_channel');
 const bot_store = new Storage('./data/bot_data');
 
-module.exports = (client) => {
-    const players = bot_store.get("players") || [];
-}
+module.exports = async (message, client) => {
 
-function destroy (client) { client.destroy() }
+        await send_message_to_active_channel("I'm going down for maintenance... hopefully :grimacing:", client)
+        client.destroy();
+}

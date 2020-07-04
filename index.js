@@ -18,19 +18,31 @@ const active_channel = require('./commands/active_channel');
 const setup_scheduled_jobs = require('./scheduled_jobs/setup_scheduled_jobs');
 const train = require('./commands/train');
 const battle = require('./commands/battle');
+const killbot = require('./commands/killbot');
 const initialize_factions = require('./helpers/initialize_factions');
 const faction_info = require('./commands/faction_info');
 const cast = require('./commands/cast');
 const AvalwynStorage = require("./AvalwynStorage");
 const hire = require('./commands/hire');
 const fire = require('./commands/fire');
+const send_attachment_to_active_channel = require('./helpers/send_attachment_to_active_channel');
 
-// const killbot = require('./commands/killbot');
+let jobs = [];
 
 client.once('ready', async () => {
     new AvalwynStorage();
-    setup_scheduled_jobs(client);
+    jobs = setup_scheduled_jobs(client);
     initialize_factions();
+});
+
+client.once('shardDisconnect', async () => {
+    console.log("Destroying jobs...")
+    jobs.forEach((job) => {
+        job.destroy();
+    })
+    console.log("Done destroying jobs...");
+
+    console.log("Fully disconnected...");
 });
 
 client.on('message', message => {
@@ -74,6 +86,9 @@ client.on('message', message => {
             break;
         case "fire":
             fire(message, client, args.shift());
+            break;
+        case "killbot":
+            killbot(message, client);
             break;
         default:
             message.channel.send("`" + message.content + "` is not a valid command");
