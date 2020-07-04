@@ -7,16 +7,11 @@ const diplomats = require('../factions/diplomats.json');
 module.exports = async (client) => {
     const diplomat_keys = Object.keys(diplomats);
 
-    console.log("Diplomat Keys:", diplomat_keys);
-
     const wandering_diplomat_keys = diplomat_keys.filter((diplomat_key) => {
         const diplomat_state = new DiplomatState(diplomat_key);
-        console.log("Diplomat: ", diplomat_key);
-        console.log("State:", diplomat_state.stateMachine.state);
         return diplomat_state.isWandering();
     });
 
-    console.log("Wandering Diplomats:", wandering_diplomat_keys);
 
     if(!wandering_diplomat_keys || wandering_diplomat_keys.length === 0) {
         const d = new Date();
