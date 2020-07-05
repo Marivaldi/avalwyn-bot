@@ -24,8 +24,15 @@ function downloadFile(filePath, bucketName, key) {
         Key: key
     };
     s3.getObject(params, (err, data) => {
-        if (err) console.error(err);
-        fs.writeFileSync(filePath, data.Body.toString());
-        console.log(`${filePath} has been created!`);
+        if (err) {
+            if(err.statusCode === 404) {
+                console.log(`${key} hasn't been loaded into ${bucketName} yet.`)
+            } else {
+                console.error(err);
+            }
+        } else {
+            fs.writeFileSync(filePath, data.Body.toString());
+            console.log(`${filePath} has been created!`);
+        }
     });
 };
