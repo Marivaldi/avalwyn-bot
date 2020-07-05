@@ -9,10 +9,10 @@
         "might": 0
       },
       "resources": {
-        "gold": 10,
-        "ore": 10,
-        "food": 10,
-        "citizens": 10
+        "gold": 50,
+        "ore": 15,
+        "food": 15,
+        "citizens": 15
       }
     },
     "the_north": {
@@ -25,10 +25,10 @@
         "might": 0
       },
       "resources": {
-        "gold": 10,
-        "ore": 10,
-        "food": 10,
-        "citizens": 10
+        "gold": 50,
+        "ore": 15,
+        "food": 15,
+        "citizens": 15
       }
     },
     "krackan": {
@@ -41,10 +41,10 @@
         "might": 0
       },
       "resources": {
-        "gold": 10,
-        "ore": 10,
-        "food": 10,
-        "citizens": 10
+        "gold": 50,
+        "ore": 15,
+        "food": 15,
+        "citizens": 15
       }
     },
     "sagemoor": {
@@ -57,10 +57,10 @@
         "might": 0
       },
       "resources": {
-        "gold": 10,
-        "ore": 10,
-        "food": 10,
-        "citizens": 10
+        "gold": 50,
+        "ore": 15,
+        "food": 15,
+        "citizens": 15
       }
     },
     "the_hive": {
@@ -73,10 +73,10 @@
         "might": 0
       },
       "resources": {
-        "gold": 10,
-        "ore": 10,
-        "food": 10,
-        "citizens": 10
+        "gold": 50,
+        "ore": 15,
+        "food": 15,
+        "citizens": 15
       }
     }
   }
