@@ -26,10 +26,13 @@ const AvalwynStorage = require("./AvalwynStorage");
 const hire = require('./commands/hire');
 const fire = require('./commands/fire');
 const send_attachment_to_active_channel = require('./helpers/send_attachment_to_active_channel');
+const upload_data_to_s3 = require('./helpers/upload_data_to_s3');
+const download_data_from_s3 = require('./helpers/download_data_from_s3');
 
 let jobs = [];
 
 client.once('ready', async () => {
+    download_data_from_s3();
     new AvalwynStorage();
     jobs = setup_scheduled_jobs(client);
     if(jobs.length === 0) {
@@ -45,7 +48,11 @@ client.once('shardDisconnect', async () => {
     jobs.forEach((job) => {
         job.destroy();
     })
-    console.log("Done destroying jobs...");
+    console.log("Done destroying jobs!");
+
+    console.log("Syncing Data to S3 Bucket...")
+    upload_data_to_s3();
+    console.log("Done syncing data!");
 
     console.log("Killing Process...");
     process.exit(5);
