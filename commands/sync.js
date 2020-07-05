@@ -1,5 +1,5 @@
 const send_message_to_active_channel = require('../helpers/send_message_to_active_channel');
-const upload_data_to_s3 = require('./helpers/upload_data_to_s3');
+const upload_data_to_s3 = require('../helpers/upload_data_to_s3');
 
 module.exports = async (message, client) => {
         let is_bot_owner = message.author.id === '390639479599136784';
