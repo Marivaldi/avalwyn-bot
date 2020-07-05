@@ -32,6 +32,7 @@ const spells = require('./commands/spells');
 const random_diplomat = require('./scheduled_jobs/random_diplomat');
 const send_message_to_active_channel = require('./helpers/send_message_to_active_channel');
 const sync = require('./commands/sync');
+const send_diplomat = require('./commands/send_diplomat');
 
 let jobs = [];
 
@@ -45,7 +46,6 @@ client.once('ready', async () => {
         return;
     }
     initialize_factions();
-    random_diplomat(client);
     send_message_to_active_channel(":robot: I'm back baby! :whiteclaw:");
 });
 
@@ -120,6 +120,9 @@ client.on('message', message => {
             break;
         case "sync":
             sync(message, client);
+            break;
+        case "send_diplomat":
+            send_diplomat(message, client);
             break;
         default:
             message.channel.send("`" + message.content + "` is not a valid command");
