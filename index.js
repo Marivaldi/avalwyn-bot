@@ -37,8 +37,7 @@ const send_diplomat = require('./commands/send_diplomat');
 let jobs = [];
 
 client.once('ready', async () => {
-    initialize_factions();
-    download_data_from_s3();
+    await download_data_from_s3();
     const astorage = new AvalwynStorage();
     jobs = setup_scheduled_jobs(client);
     if(jobs.length === 0) {

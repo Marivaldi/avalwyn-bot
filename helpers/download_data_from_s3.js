@@ -11,14 +11,18 @@ const config = {
     s3BucketName: process.env.S3_SYNC_BUCKET,
     folderPath: '../data'
 };
-module.exports = () => {
+module.exports = async () => {
     data_files.forEach((data_file) => {
         const destinationFilePath = path.join(__dirname, `${config.folderPath}/${data_file}`);
         downloadFile(destinationFilePath, config.s3BucketName, data_file);
     });
+
+    return new Promise((resolve, reject) => {
+        resolve('ok')
+    });
 }
 
-function downloadFile(filePath, bucketName, key) {
+async function downloadFile(filePath, bucketName, key) {
     const params = {
         Bucket: bucketName,
         Key: key
