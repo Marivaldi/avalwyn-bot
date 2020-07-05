@@ -20,7 +20,6 @@ const killbot = require('./commands/killbot');
 const initialize_factions = require('./helpers/initialize_factions');
 const faction_info = require('./commands/faction_info');
 const cast = require('./commands/cast');
-const AvalwynStorage = require("./AvalwynStorage");
 const hire = require('./commands/hire');
 const fire = require('./commands/fire');
 const send_attachment_to_active_channel = require('./helpers/send_attachment_to_active_channel');
@@ -38,7 +37,6 @@ let jobs = [];
 
 client.once('ready', async () => {
     await download_data_from_s3();
-    const astorage = new AvalwynStorage();
     jobs = setup_scheduled_jobs(client);
     if(jobs.length === 0) {
         console.error("Shutting down due to bad CRON jobs!");
