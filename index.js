@@ -27,6 +27,7 @@ const send_attachment_to_active_channel = require('./helpers/send_attachment_to_
 const upload_data_to_s3 = require('./helpers/upload_data_to_s3');
 const download_data_from_s3 = require('./helpers/download_data_from_s3');
 const help = require('./commands/help');
+const spy = require('./commands/spy');
 
 let jobs = [];
 
@@ -95,6 +96,9 @@ client.on('message', message => {
             break;
         case "faction_info":
             faction_info(message);
+            break;
+        case "spy":
+            spy(message, args.shift());
             break;
         case "hire":
             hire(message, client, args.shift());
