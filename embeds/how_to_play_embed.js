@@ -32,7 +32,7 @@ const embed = new Discord.MessageEmbed()
     )
     .addField(
         "Casting Spells",
-        `Once you have at least a 1 in MAGIC, you can cast your first spell. Note that you cannot cast a spell and attack on the same Avalwyn Day.\n\nTo cast a spell type \`${process.env.PREFIX}cast [spell_key] [faction_key]\`. This will set that spell to be cast by the end of the day.\n\n`
+        `Once you have at least a 1 in MAGIC, you can cast your first spell. Note that you cannot cast a spell and attack on the same Avalwyn Day.\n\nTo cast a spell type \`${process.env.PREFIX}cast [spell_key] [faction_key]\`. This will set that spell to be cast by the end of the day.\n\nFor a list of available spells, type \`${process.env.PREFIX}spells\``
     )
     .addField(
         "Diplomats",
