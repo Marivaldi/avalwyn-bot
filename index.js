@@ -1,12 +1,10 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const dotenv = require('dotenv').config();
 
 //config
-const {
-    prefix
-} = require('./config.json');
-const dotenv = require('dotenv').config();
+const prefix = process.env.PREFIX;
 
 // commands
 const start = require('./commands/start');
@@ -28,6 +26,7 @@ const fire = require('./commands/fire');
 const send_attachment_to_active_channel = require('./helpers/send_attachment_to_active_channel');
 const upload_data_to_s3 = require('./helpers/upload_data_to_s3');
 const download_data_from_s3 = require('./helpers/download_data_from_s3');
+const help = require('./commands/help');
 
 let jobs = [];
 
@@ -64,6 +63,9 @@ client.on('message', message => {
     const args = message.content.slice(prefix.length).split(' ');
     const command = args.shift().toLowerCase();
     switch (command) {
+        case "help":
+            help(message);
+            break;
         case "start":
             start(message);
             break;
