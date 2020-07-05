@@ -22,7 +22,7 @@ module.exports = (client) => {
         return [];
     }
 
-    const training_schedule = `5 * */${training_interval} * * *`;
+    const training_schedule = `0 */${training_interval} * * *`;
 
     const new_diplomat_schedule = process.env.NEW_DIPLOMAT_SCHEDULE;
 

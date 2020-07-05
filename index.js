@@ -37,16 +37,15 @@ const send_diplomat = require('./commands/send_diplomat');
 let jobs = [];
 
 client.once('ready', async () => {
+    initialize_factions();
     download_data_from_s3();
-    new AvalwynStorage();
+    const astorage = new AvalwynStorage();
     jobs = setup_scheduled_jobs(client);
     if(jobs.length === 0) {
         console.error("Shutting down due to bad CRON jobs!");
         killbot(undefined, client);
         return;
     }
-    initialize_factions();
-    send_message_to_active_channel(":robot: I'm back baby! :whiteclaw:");
 });
 
 client.once('shardDisconnect', async () => {

@@ -2,6 +2,7 @@ const initial_factions = require("../factions/initial_factions.json");
 const AvalwynStorage = require("../AvalwynStorage");
 
 module.exports = () => {
+    console.log("Initializing Factions...");
     const faction_store = new AvalwynStorage().faction_storage;
     faction_keys = Object.keys(initial_factions);
     for(let i = 0; i < faction_keys.length; i++) {
