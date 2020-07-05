@@ -13,7 +13,7 @@ module.exports = async (faction_store, client) => {
     const d = new Date();
     console.log("Deciding Battles...", d.toLocaleString('en-US', { timeZone: 'America/New_York' }));
 
-    const loss_modifier = random.int(1, 2);
+    const loss_modifier = 1; // random.int(1, 2);
     const embed = new Discord.MessageEmbed()
         .setColor("#8b0000")
         .setTitle("Battle Results")
@@ -31,17 +31,24 @@ module.exports = async (faction_store, client) => {
             const enemy_faction_key = faction_state.battlingWho();
             const enemy = faction_store.get(enemy_faction_key);
 
+            const attacker_has_colt = faction.diplomats.some((diplomat) => diplomat === "colt");
+
             const defender_is_target_of_spell = (enemy_faction_key in spells);
             const defender_is_target_of_protection = defender_is_target_of_spell && spells[enemy_faction_key] === "protection";
             const defender_is_target_of_fortify = defender_is_target_of_spell && spells[enemy_faction_key] === "fortify"
             const fortify_bonus = (defender_is_target_of_fortify) ? 2 : 0;
             const fortify_text = (defender_is_target_of_fortify) ? " + 2 (Fortify Spell)" : "";
+            const colt_bonus = (attacker_has_colt) ? 3 : 0;
+            const colt_text = (defender_is_target_of_fortify) ? " + 3 (Colt Lonestar Jackson)" : "";
             const attack_roll = random.int(1, 20);
-            const attack_check = faction.stats.might + attack_roll;
+            const attack_check = faction.stats.might + attack_roll + colt_bonus;
             const defense_roll = random.int(1, 20);
             const defense_check = enemy.stats.fortitude + defense_roll + fortify_bonus;
-            const roll_text = `**${attack_roll} + ${faction.stats.might} (Might)** vs. **${defense_roll} + ${enemy.stats.fortitude} (Fortitude) ${fortify_text}**`;
+            const roll_text = `**${attack_roll} + ${faction.stats.might} (Might)${colt_text}** vs. **${defense_roll} + ${enemy.stats.fortitude} (Fortitude)${fortify_text}**`;
 
+
+            const attacker_has_danson = faction.diplomats.some((diplomat) => diplomat === "danson");
+            const defender_has_ricky = faction.diplomats.some((diplomat) => diplomat === "ricky");
 
             if(defender_is_target_of_protection) {
                 embed.addFields({
@@ -59,8 +66,16 @@ module.exports = async (faction_store, client) => {
 
             if (attack_check > defense_check && !defender_is_target_of_protection) {
                 const difference = attack_check - defense_check;
-                const total_life_loss = difference * loss_modifier;
+                const ricky_text = (defender_has_ricky) ? `Ricky: *"Don't worry, boss. I'll take one for the team."*` : "";
+                const ricky_mod = (defender_has_ricky) ? 2 : 1;
+                const total_life_loss = Math.round((difference * loss_modifier) / ricky_mod);
                 enemy.resources.citizens -= total_life_loss;
+                const danson_son_text = "";
+                if (attacker_has_danson) {
+                    const danson_gain = Math.round(total_life_loss / 2);
+                    faction.resources.citizens += danson_gain
+                    danson_son_text = `Danson: *"${to_faction_name(faction_key)} can have ${danson_gain} of my sons"*`;
+                }
                 enemy.resources.citizens = (enemy.resources.citizens < 0) ? 0 : enemy.resources.citizens;
                 const total_loss_text = (enemy.resources.citizens === 0) ? "the rest of their" : total_life_loss;
                 const gold_gain = random.int(1, 20);
@@ -69,7 +84,7 @@ module.exports = async (faction_store, client) => {
                 const gold_gain_text = `${to_faction_name(faction_key)} gained ${gold_gain} ${to_resource_name(faction_key, "gold")}.`;
                 embed.addFields({
                     name: `${to_faction_name(faction_key)} Broke the Defenses`,
-                    value: `${roll_text}\n${life_loss_text}\n${gold_gain_text}`
+                    value: `${roll_text}\n${life_loss_text}\n${ricky_text}\n${gold_gain_text}\n${danson_son_text}`
                 }, )
 
                 faction_store.put(enemy_faction_key, enemy);
