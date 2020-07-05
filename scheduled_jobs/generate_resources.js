@@ -30,14 +30,25 @@ module.exports = async (faction_store, client) => {
             const resource_key = pickRandom(valid_resources, {
                 count: 1
             });
-            const amount = random.int(2, 15);
+            let amount = random.int(2, 15);
             const faction = faction_store.get(faction_key);
+            const has_dimir = faction.diplomats.some((diplomat) => diplomat === "dimir");
+            const has_courage = faction.diplomats.some((diplomat) => diplomat === "courage");
+            const has_mercedes = faction.diplomats.some((diplomat) => diplomat === "mercedes");
+            amount = (has_mercedes && resource_key === "gold") ? amount * 2 : amount;
+            const mercedes_text = (has_mercedes) ? `\nMercedes: *"I call that a glow up."*`: "";
+            const courage_increase = (has_courage) ? 5 : 0;
+            const courage_text = (has_courage) ? `\nCourage: *"I found 5 ${to_resource_name(faction_key, "ore")} over there."*`: "";
+            const dimir_increase = (has_dimir) ? random.int(2, 15) : 0;
+            const dimir_text = (has_dimir) ? `\nDimir's Golden Brew brings in ${dimir_increase} new ${to_resource_name(faction_key, "citizens")}`: "";
             if (faction) {
                 faction.resources[resource_key] += amount;
+                faction.resources.citizens += dimir_increase;
+                faction.resources.ore += courage_increase;
                 faction_store.put(faction_key, faction);
                 embed.addFields({
                     name: to_faction_name(faction_key),
-                    value: `Gained ${amount} ${to_resource_name(faction_key, resource_key)}.`
+                    value: `Gained ${amount} ${to_resource_name(faction_key, resource_key)}.${dimir_text}${mercedes_text}${courage_text}`
                 }, )
             }
         }
