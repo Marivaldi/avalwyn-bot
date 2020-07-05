@@ -28,6 +28,7 @@ const upload_data_to_s3 = require('./helpers/upload_data_to_s3');
 const download_data_from_s3 = require('./helpers/download_data_from_s3');
 const help = require('./commands/help');
 const spy = require('./commands/spy');
+const spells = require('./commands/spells');
 
 let jobs = [];
 
@@ -66,6 +67,9 @@ client.on('message', message => {
     switch (command) {
         case "help":
             help(message);
+            break;
+        case "spells":
+            spells(message);
             break;
         case "start":
             start(message);
