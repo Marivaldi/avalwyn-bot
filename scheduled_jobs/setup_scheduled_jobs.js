@@ -13,10 +13,10 @@ module.exports = (client) => {
         console.log(`Resource Interval: ${resource_interval} is not valid!`);
         return [];
     }
-    const resource_generation_schedule = `* 0 */${resource_interval} * * * *`;
+    const resource_generation_schedule = `0 */${resource_interval} * * * *`;
 
     const training_interval = resource_interval * 7;
-    const training_schedule = `* 0 */${training_interval} * * * *`;
+    const training_schedule = `5 */${training_interval} * * * *`;
 
     const resource_generation_schedule_is_valid = cron.validate(resource_generation_schedule);
     const training_schedule_is_valid = cron.validate(training_schedule);
