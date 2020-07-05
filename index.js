@@ -29,6 +29,9 @@ const download_data_from_s3 = require('./helpers/download_data_from_s3');
 const help = require('./commands/help');
 const spy = require('./commands/spy');
 const spells = require('./commands/spells');
+const random_diplomat = require('./scheduled_jobs/random_diplomat');
+const send_message_to_active_channel = require('./helpers/send_message_to_active_channel');
+const sync = require('./commands/sync');
 
 let jobs = [];
 
@@ -42,6 +45,8 @@ client.once('ready', async () => {
         return;
     }
     initialize_factions();
+    random_diplomat(client);
+    send_message_to_active_channel(":robot: I'm back baby! :whiteclaw:");
 });
 
 client.once('shardDisconnect', async () => {
@@ -112,6 +117,9 @@ client.on('message', message => {
             break;
         case "killbot":
             killbot(message, client);
+            break;
+        case "sync":
+            sync(message, client);
             break;
         default:
             message.channel.send("`" + message.content + "` is not a valid command");
