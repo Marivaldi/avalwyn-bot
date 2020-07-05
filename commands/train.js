@@ -29,7 +29,7 @@ module.exports = (message, client, skill) => {
     const player_state = new PlayerState(message.author.id);
     const isInProperState = player_state.currentState() === "generalPlay";
     if(!isInProperState) {
-        message.author.send("Something happened. Probably bad code. Let Shayne know this happened.");
+        message.author.send("Something happened. Probably bad code. Let <@390639479599136784> know this happened.");
         return;
     }
 

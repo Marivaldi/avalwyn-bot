@@ -29,7 +29,7 @@ module.exports = async (message, client, argument) => {
 
     const not_a_valid_diplomat = !valid_diplomats.includes(diplomat_key);
     if(not_a_valid_diplomat) {
-        send_message_to_active_channel(""+ message.author +" `" + diplomat_key + "` is not a valid Diplomat. But, hey, come up with an idea for a diplomat and tell Shayne.", client);
+        send_message_to_active_channel(""+ message.author +" `" + diplomat_key + "` is not a valid Diplomat. But, hey, come up with an idea for a diplomat and tell <@390639479599136784>.", client);
         return;
     }
 
@@ -52,7 +52,7 @@ module.exports = async (message, client, argument) => {
     const player_state = new PlayerState(message.author.id);
     const player_is_in_proper_state = player_state.currentState() === "generalPlay";
     if(!player_is_in_proper_state) {
-        message.channel.send("Something happened. Probably bad code. Let Shayne know this happened.");
+        message.channel.send("Something happened. Probably bad code. Let <@390639479599136784> know this happened.");
         return;
     }
 
@@ -69,7 +69,7 @@ module.exports = async (message, client, argument) => {
     const was_fired = diplomat_state.fire();
 
     if(!was_fired) {
-        message.channel.send(`Something went wrong while trying to fire ${diplomats[diplomat_key].name}... Let Shayne know this happend.`);
+        message.channel.send(`Something went wrong while trying to fire ${diplomats[diplomat_key].name}... Let <@390639479599136784> know this happend.`);
         return;
     }
 

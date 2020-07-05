@@ -55,7 +55,7 @@ module.exports = async (message, client, argument, target) => {
     const player_state = new PlayerState(message.author.id);
     const playerIsInProperState = player_state.currentState() === "generalPlay";
     if(!playerIsInProperState) {
-        message.author.send("Something happened. Probably bad code. Let Shayne know this happened.");
+        message.author.send("Something happened. Probably bad code. Let <@390639479599136784> know this happened.");
         return;
     }
 
@@ -76,7 +76,7 @@ module.exports = async (message, client, argument, target) => {
 
 
     if(!(spell in all_spells)) {
-        message.author.send("`" + spell + "` is not a valid spell. Ask Shayne to make it real.");
+        message.author.send("`" + spell + "` is not a valid spell. Ask <@390639479599136784> to make it real.");
         return;
     }
 

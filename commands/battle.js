@@ -59,7 +59,7 @@ module.exports = async (message, client, argument) => {
     const player_state = new PlayerState(message.author.id);
     const playerIsInProperState = player_state.currentState() === "generalPlay";
     if(!playerIsInProperState) {
-        message.author.send("Something happened. Probably bad code. Let Shayne know this happened.");
+        message.author.send("Something happened. Probably bad code. Let <@390639479599136784> know this happened.");
         return;
     }
 

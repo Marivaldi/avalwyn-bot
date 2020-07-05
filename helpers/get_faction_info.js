@@ -12,7 +12,7 @@ module.exports = (faction_key) => {
     const faction_store = new AvalwynStorage().faction_storage;
     const faction = faction_store.get(faction_key);
     const is_valid_faction = (faction_key in faction_text);
-    if(!faction || !is_valid_faction) return "Somehow your faction isn't valid... tell Shayne.";
+    if(!faction || !is_valid_faction) return "Somehow your faction isn't valid... tell <@390639479599136784>.";
 
     const my_faction_text = faction_text[faction_key];
 
