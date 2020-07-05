@@ -43,13 +43,12 @@ module.exports = (client) => {
     const skill_training_job = cron.schedule(training_schedule, async () => {
         const faction_store = new AvalwynStorage().faction_storage;
         await train_skills(faction_store, client);
-        await random_diplomat(client);
     }, {
         scheduled: true,
         timezone: "America/New_York"
     });
 
-    const new_diplomat_job = cron.schedule(training_schedule, async () => {
+    const new_diplomat_job = cron.schedule(new_diplomat_schedule, async () => {
         await random_diplomat(client);
     }, {
         scheduled: true,
