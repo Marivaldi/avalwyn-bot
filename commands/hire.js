@@ -46,7 +46,7 @@ module.exports = async (message, client, argument) => {
 
     if(diplomat_is_already_hired) {
         const employer_faction_key = diplomat_state.employer();
-        const employer_is_self = player.faction = employer_faction_key;
+        const employer_is_self = player.faction === employer_faction_key;
         if(employer_is_self) {
             message.channel.send(`You have already hired ${diplomats[diplomat_key].name}.`);
             return;
