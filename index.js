@@ -6,7 +6,7 @@ const client = new Discord.Client();
 const {
     prefix
 } = require('./config.json');
-require('dotenv').config()
+const dotenv = require('dotenv').config();
 
 // commands
 const start = require('./commands/start');
@@ -32,6 +32,11 @@ let jobs = [];
 client.once('ready', async () => {
     new AvalwynStorage();
     jobs = setup_scheduled_jobs(client);
+    if(jobs.length === 0) {
+        console.error("Shutting down due to bad CRON jobs!");
+        killbot(undefined, client);
+        return;
+    }
     initialize_factions();
 });
 
@@ -42,7 +47,8 @@ client.once('shardDisconnect', async () => {
     })
     console.log("Done destroying jobs...");
 
-    console.log("Fully disconnected...");
+    console.log("Killing Process...");
+    process.exit(5);
 });
 
 client.on('message', message => {
