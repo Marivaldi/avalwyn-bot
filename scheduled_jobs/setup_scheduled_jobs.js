@@ -12,10 +12,17 @@ module.exports = (client) => {
         console.log(`Resource Interval: ${resource_interval} is not valid!`);
         return [];
     }
+
     const resource_generation_schedule = `0 */${resource_interval} * * * *`;
 
-    const training_interval = resource_interval * 7;
-    const training_schedule = `5 */${training_interval} * * * *`;
+    const training_interval = process.env.TRAINING_INTERVAL;
+    const training_interval_is_not_a_number = isNaN(training_interval);
+    if (training_interval_is_not_a_number) {
+        console.log(`Training Interval: ${training_interval} is not valid!`);
+        return [];
+    }
+
+    const training_schedule = `5 * */${training_interval} * * *`;
 
     const new_diplomat_schedule = process.env.NEW_DIPLOMAT_SCHEDULE;
 

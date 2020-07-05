@@ -20,7 +20,7 @@ const embed = new Discord.MessageEmbed()
     )
     .addField(
         "Days in Avalwyn",
-        `A day in Avalwyn is currently set to ${process.env.RESOURCE_GENERATION_INTERVAL} minutes in the real world. This is also, subject to change as <@390639479599136784> figures out how to balance the game.\n\nAt the end of each day Resources are generated and any pending battles are fought. At the end of a week (every ${process.env.RESOURCE_GENERATION_INTERVAL * 7} minutes) in Avalwyn your faction finishes training the skill they selected to train.\n\n`
+        `A day in Avalwyn is currently set to ${process.env.RESOURCE_GENERATION_INTERVAL} minutes in the real world. This is also, subject to change as <@390639479599136784> figures out how to balance the game.\n\nAt the end of each day Resources are generated and any pending battles are fought. At the end of the 2nd day (every ${process.env.TRAINING_INTERVAL} hours) in Avalwyn your faction finishes training the skill they selected to train.\n\n`
     )
     .addField(
         "Training Skills",
