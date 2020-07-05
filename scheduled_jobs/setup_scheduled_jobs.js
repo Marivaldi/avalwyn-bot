@@ -13,7 +13,7 @@ module.exports = (client) => {
         await decide_battles(faction_store, client);
     });
 
-    const every_three_hours = cron.schedule("0 *210 * * * *", async () =>  {
+    const every_three_hours = cron.schedule("0 */210 * * * *", async () =>  {
         const faction_store = new AvalwynStorage().faction_storage;
         await train_skills(faction_store, client);
         await random_diplomat(client);
