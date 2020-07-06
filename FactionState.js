@@ -34,6 +34,14 @@ module.exports = class FactionState {
         this.stateMachine.castSpell();
     }
 
+    setSpell(spell_key) {
+        this.state_store.put(this.faction_key + ".spell", spell_key);
+    }
+
+    removeSpell() {
+        this.state_store.remove(this.faction_key + ".spell");
+    }
+
     battlingWho() {
         return this.state_store.get(this.faction_key + ".battling");
     }

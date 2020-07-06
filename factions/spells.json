@@ -6,11 +6,32 @@
         "magic_level_requirement" : 1,
         "can_cast_on_self" : true
     },
+    "lesser_harvest" : {
+        "name" : "Lesser Harvest",
+        "description" : "The targeted factions crops grow fast and tall. They gain +5 `food` for the day.",
+        "usage" : "cast lesser_harvest [faction]",
+        "magic_level_requirement" : 2,
+        "can_cast_on_self" : true
+    },
     "protection" : {
         "name" : "Protection",
         "description" : "Protect one faction from battle. At the end of the day the battles info will show that the defender was protected by mysterious forces.",
         "usage" : "cast protection [faction]",
         "magic_level_requirement" : 3,
         "can_cast_on_self" : false
+    },
+    "mass_misty_step" : {
+        "name" : "Mass Misty Step",
+        "description" : "Teleport your army to the enemy's gates just before you strike. When you cast this spell, you battle a faction without notifying the active channel of the impending battle.",
+        "usage" : "cast mass_misty_step [faction]",
+        "magic_level_requirement" : 4,
+        "can_cast_on_self" : false
+    },
+    "ward" : {
+        "name" : "Ward",
+        "description" : "While Ward is up, no spells can be cast on the targeted faction.",
+        "usage" : "cast ward [faction]",
+        "magic_level_requirement" : 5,
+        "can_cast_on_self" : true
     }
 }

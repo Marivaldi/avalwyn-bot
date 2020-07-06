@@ -8,8 +8,8 @@ const embed = new Discord.MessageEmbed()
 
 
 embed.addFields({
-    name: "Fixed Fortify Spell Command",
-    value: 'I\'m a dingus. Fortify will now say `a!cast fortify [faction]`'
+    name: ":mage: New Spells :mage:",
+    value: 'Run `a!spells` to check out the new spells.'
 })
 
 

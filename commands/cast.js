@@ -5,6 +5,7 @@ const to_faction_name = require("../texts/to_faction_name");
 const send_message_to_faction_leaders = require('../helpers/send_message_to_faction_leaders');
 const all_spells = require('../factions/spells.json');
 const AvalwynStorage = require("../AvalwynStorage");
+const battle = require("./battle");
 const special_arguments = ["cancel"]
 
 module.exports = async (message, client, argument, target) => {
@@ -95,14 +96,28 @@ module.exports = async (message, client, argument, target) => {
         return;
     }
 
-    faction_state.castSpell(enemy, spell);
+    const pending_spells = await get_spells();
+    const enemy_is_target_of_spell = (enemy in pending_spells);
+    const enemy_is_target_of_ward = enemy_is_target_of_spell && pending_spells[enemy] === "ward";
+    if(enemy_is_target_of_ward) {
+        const subject = (enemy === player.faction) ? `You are` : `${to_faction_name(enemy)} is`; 
+        message.channel.send(`${subject} being targeted by the Ward spell. No other spells can be cast with that target.`);
+        return;
+    }
 
-    const casting_message = `You've chosen to cast ${all_spells[spell].name} on ${to_faction_name(enemy)} :man_mage:`;
+    if(spell === "mass_misty_step") {
+        battle(message, client, enemy, false);
+        faction_state.setSpell(spell);
+    } else {
+        faction_state.castSpell(enemy, spell);
+    }
+
+    const casting_message = `:man_mage: You've chosen to cast ${all_spells[spell].name} on ${to_faction_name(enemy)} :man_mage:`;
     send_message_to_faction_leaders(casting_message, player.faction, client)
 }
 
 function cancel_spell(message, faction_state, player, client, spell) {
-    if(!faction_state.isCasting()) {
+    if(!faction_state.isCasting() && faction_state.castingWhichSpell() !== "mass_misty_step") {
         message.author.send("You're not casting right now...");
         return;
     }
@@ -110,6 +125,27 @@ function cancel_spell(message, faction_state, player, client, spell) {
     const pending_spell = faction_state.castingWhichSpell();
     const spell_target = faction_state.castingAgainstWho();
 
-    faction_state.cancelSpell();
+    if(pending_spell === "mass_misty_step") {
+        battle(message, client, "cancel", false);
+        faction_state.removeSpell();
+    } else {
+        faction_state.cancelSpell();
+    }
+
     send_message_to_faction_leaders(`${message.author} has decide not to cast ${all_spells[pending_spell].name} on ${to_faction_name(spell_target)}. Take it up with them.`, player.faction, client)
+}
+
+async function get_spells() {
+    let pending_spells = {};
+    for(let i = 0; i < valid_factions.length; i ++) {
+        const faction_key = valid_factions[i];
+        const faction_state = new FactionState(faction_key);
+        if(!faction_state.isCasting()) continue;
+
+        pending_spells[faction_state.castingAgainstWho()] = faction_state.castingWhichSpell();
+    }
+
+    return new Promise((resolve, reject) => {
+        resolve(pending_spells)
+    });
 }
