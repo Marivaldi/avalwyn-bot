@@ -46,7 +46,7 @@
         "dialogue" : [
             "I could use place to rest my head. Maybe I do some flying for you. Spy on enemy for you, no?"
         ],
-        "effect": "While you have Falcon equipped, you can run the `!spy [faction]` command to see another faction's information.",
+        "effect": "While you have Falcon equipped, you can run the `a!spy [faction]` command to see another faction's information.",
         "thumbnail": ""
     },
     "dimir" : {

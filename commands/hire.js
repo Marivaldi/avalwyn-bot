@@ -14,12 +14,12 @@ module.exports = async (message, client, argument) => {
     const player = bot_store.get(message.author.id);
 
     if(!player) {
-        message.channel.send("You haven't even started a game yet. Run the `!start` command.");
+        message.channel.send(`You haven't even started a game yet, or haven't confirmed on the first prompt. Run the \`${process.env.PREFIX}start\` command, or the \`${process.env.PREFIX}yes\` command.`);
         return;
     }
 
     if(!player.faction) {
-        message.author.send("Looks like you're not currently a part of any factions. Run `!join` followed by one of these faction names: `" + valid_factions.join(' ') +"`");
+        message.author.send(`Looks like you're not currently a part of any factions. Run \`${process.env.PREFIX}join\` followed by one of these faction names: \`${valid_factions.join(' ')}\``);
         return;
     }
 
@@ -70,7 +70,7 @@ module.exports = async (message, client, argument) => {
 
     if(!was_hired) {
         const existing_diplomat_key = faction.diplomats[0];
-        message.channel.send(`You already have ${diplomats[existing_diplomat_key].name} equipped. Run \`!fire ${existing_diplomat_key}\` to get rid of them. Then, you can try to hire ${diplomats[diplomat_key].name}`);
+        message.channel.send(`You already have ${diplomats[existing_diplomat_key].name} equipped. Run \`${process.env.PREFIX}fire ${existing_diplomat_key}\` to get rid of them. Then, you can try to hire ${diplomats[diplomat_key].name}`);
         return;
     }
 

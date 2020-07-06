@@ -5,5 +5,5 @@
     "factions_header" : "Factions",
     "factions_description" : "Should you choose to join a faction, you will be one among many who will lead it to glory or to destruction. Every choice you make for the faction will change the course of history.",
     "next_action_header" : "Are you ready?",
-    "next_action_text" : "`!yes` `!no`"
+    "next_action_text" : "`a!yes` `a!no`"
 }

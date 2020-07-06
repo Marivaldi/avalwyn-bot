@@ -13,7 +13,7 @@ valid_spells.forEach((spell_key) => {
     const spell = spells[spell_key];
     const cast_on_self_text = (spell.can_cast_on_self) ? ":white_check_mark:" : ":no_entry_sign:"
     embed.addFields(
-        { name: `${spell.name} (LVL ${spell.magic_level_requirement})`, value: `${spell.description}\nCan Cast on Self? ${cast_on_self_text}\n\`${spell.usage}\``}
+        { name: `${spell.name} (LVL ${spell.magic_level_requirement})`, value: `${spell.description}\nCan Cast on Self? ${cast_on_self_text}\n\`${process.env.PREFIX + spell.usage}\``}
     )
 })
 

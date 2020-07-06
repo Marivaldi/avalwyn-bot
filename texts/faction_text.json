@@ -2,26 +2,26 @@
     "the_north": {
         "name": "Douglass & The North",
         "description" : "'King in the North!' they chant for the brooding young fighter. The wintery kingdom known simply as The North is home to hearty adventurers and strange magic.",
-        "command": "`!choose the_north`"
+        "command": "`a!choose the_north`"
     },
     "krackan": {
         "name": "Allrender & the People of Krackan",
         "description" : "Before Chief Allrender arrived, Krackan was weak. They'd grown too comfortable living the lifestyle of the elves that called the region home. With Allrender's guidance, the people of Krackan will rise up as a force to be reckoned with.",
-        "command": "`!choose krackan`"
+        "command": "`a!choose krackan`"
     },
     "old_country": {
         "name": "Glad, Vlad & Their Old Country",
         "description" : "Much talk about Old Country, yes? We fight for liberation, HAHAAA!",
-        "command": "`!choose old_country`"
+        "command": "`a!choose old_country`"
     },
     "sagemoor": {
         "name": "Mayor Humbaba & Sagemoor",
         "description" : "After Mayor Avantus's passing... after his evil son took his mantle... and after the latest mayor, Lyra, took off, Humbaba was left to lead the town to its glory days. Aid Humbaba in his quest to make Sagemoor anew.",
-        "command": "`!choose sagemoor`"
+        "command": "`a!choose sagemoor`"
     },
     "the_hive": {
         "name": "The Hive",
         "description" : "XYRN-9 gives us strength and knowledge. May our tentacles reach ever further into the unknown. *Join us!*",
-        "command": "`!choose the_hive`"
+        "command": "`a!choose the_hive`"
     }
 }

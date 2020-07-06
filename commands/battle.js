@@ -17,12 +17,12 @@ module.exports = async (message, client, argument) => {
     const player = bot_store.get(message.author.id);
 
     if(!player) {
-        message.channel.send("You haven't even started a game yet. Run the `!start` command.");
+        message.channel.send(`You haven't even started a game yet, or haven't confirmed on the first prompt. Run the \`${process.env.PREFIX}start\` command, or the \`${process.env.PREFIX}yes\` command.`);
         return;
     }
 
     if(!player.faction) {
-        message.author.send("Looks like you're not currently a part of any factions. Run `!join` followed by one of these faction names: `" + valid_factions.join(' ') +"`");
+        message.author.send(`Looks like you're not currently a part of any factions. Run \`${process.env.PREFIX}join\` followed by one of these faction names: \`${valid_factions.join(' ')}\``);
         return;
     }
 
@@ -45,14 +45,14 @@ module.exports = async (message, client, argument) => {
     const not_a_valid_faction = !valid_factions.includes(enemy);
     if(not_a_valid_faction) {
         const factions_not_including_own = valid_factions.filter((faction) => faction !== player.faction);
-        message.author.send("`" + enemy + "` is not a valid faction. Run `!battle` followed by one of these: `" + factions_not_including_own.join(', ') + "`");
+        message.author.send(`\`${enemy}\` is not a valid faction. Run \`${process.env.PREFIX}battle\` followed by one of these: \`${factions_not_including_own.join(', ')}\``);
         return;
     }
 
     const player_is_trying_to_fight_self = player.faction === enemy;
     if(player_is_trying_to_fight_self) {
         const factions_not_including_own = valid_factions.filter((faction) => faction !== player.faction);
-        message.author.send("As much as we'd all like to see it, you can't fight yourself...  Run `!battle` followed by one of these: `" + factions_not_including_own.join(', ') + "`");
+        message.author.send(`As much as we'd all like to see it, you can't fight yourself...  Run \`${process.env.PREFIX}battle\` followed by one of these: \`${factions_not_including_own.join(', ')}\``);
         return;
     }
 
@@ -66,7 +66,7 @@ module.exports = async (message, client, argument) => {
     const factionIsAlreadyBattling = faction_state.isBattling();
     if(factionIsAlreadyBattling) {
         const existing_enemy = faction_state.battlingWho();
-        message.author.send("You already have a battle pending with "+ to_faction_name(existing_enemy) + ". Run `!battle cancel` if you'd like to withdraw your troops from the battlefield.");
+        message.author.send(`You already have a battle pending with ${to_faction_name(existing_enemy)}. Run \`${process.env.PREFIX}battle cancel\` or \`${process.env.PREFIX}cancel_battle\` if you'd like to withdraw your troops from the battlefield.`);
         return;
     }
 
@@ -74,7 +74,7 @@ module.exports = async (message, client, argument) => {
     if(factionIsAlreadyCasting) {
         const existing_enemy = faction_state.castingAgainstWho();
         const pending_spell = faction_state.castingWhichSpell();
-        message.author.send("You are already casting " + pending_spell + " on "+ to_faction_name(existing_enemy) + ". You can't cast and battle on the same day.\nRun `!cast cancel` if you'd like to cancel the pending spell, and try casting a new one.");
+        message.author.send(`You are already casting ${pending_spell} on ${to_faction_name(existing_enemy)}. You can't cast and battle on the same day.\nRun \`${process.env.PREFIX}cast cancel\` or \`${process.env.PREFIX}cancel_spell\` if you'd like to cancel the pending spell, and try casting a new one.`);
         return;
     }
 

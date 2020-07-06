@@ -46,7 +46,7 @@ module.exports = async (client) => {
         },
         {
             name: "Hire",
-            value: `Run \`!hire ${diplomat_key}\` to equip this Diplomat.`
+            value: `Run \`${process.env.PREFIX}hire ${diplomat_key}\` to equip this Diplomat.`
         })
         .setThumbnail(diplomat.thumbnail)
         .setTimestamp();

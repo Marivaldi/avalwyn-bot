@@ -11,18 +11,18 @@ module.exports = (message, client, skill) => {
     const player = bot_store.get(message.author.id);
 
     if(!player) {
-        message.channel.send("You haven't even started a game yet. Run the `!start` command.");
+        message.channel.send(`You haven't even started a game yet, or haven't confirmed on the first prompt. Run the \`${process.env.PREFIX}start\` command, or the \`${process.env.PREFIX}yes\` command.`);
         return;
     }
 
     if(!player.faction) {
-        message.author.send("Looks like you're not currently a part of any factions. Join one and then you can run the `!train` command.");
+        message.author.send(`Looks like you're not currently a part of any factions. Run \`${process.env.PREFIX}join\` followed by one of these faction names: \`${valid_factions.join(' ')}\``);
         return;
     }
 
     const not_a_valid_skill = !valid_skills.includes(skill);
     if(not_a_valid_skill) {
-        message.author.send("`" + skill + "` is not a valid skill to train. Use one of these: `" + valid_skills.join(', ') + "`");
+        message.author.send("`" + skill.toUpperCase() + "` is not a valid skill to train. Use one of these: `" + valid_skills.join(', ') + "`");
         return;
     }
 

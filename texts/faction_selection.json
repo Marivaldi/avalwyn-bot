@@ -4,11 +4,11 @@
     "description" : "Beyond the great void of space, lies a pale blue dot upon which wars are waged.",
     "the_north_header" : "Douglass & The North",
     "the_north_description" : "'King in the North!' they chant for the brooding young fighter. The wintery kingdom known simply as The North is home to hearty adventurers and strange magic.",
-    "the_north_command" : "`!choose the_north`",
+    "the_north_command" : "`a!choose the_north`",
     "krackan_header" : "Allrender & the People of Krackan",
     "krackan_description" : "Before Chief Allrender arrived, Krackan was weak. They'd grown too comfortable living the lifestyle of the elves that called the region home. With Allrender's guidance, the people of Krackan will rise up as a force to be reckoned with.",
-    "krackan_command" : "`!choose krackan`",
+    "krackan_command" : "`a!choose krackan`",
     "old_country_header" : "Glad, Vlad & Their Old Country",
     "old_country_description" : "Much talk about Old Country, yes? We fight for liberation, HAHAAA!",
-    "old_country_command" : "`!choose old_country`"
+    "old_country_command" : "`a!choose old_country`"
 }

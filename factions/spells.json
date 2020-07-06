@@ -1,16 +1,16 @@
 {
-    "protection" : {
-        "name" : "Protection",
-        "description" : "Protect one faction from battle. At the end of the day the battles info will show that the defender was protected by mysterious forces.",
-        "usage" : "!cast protection [faction]",
-        "magic_level_requirement" : 3,
-        "can_cast_on_self" : false
-    },
     "fortify" : {
         "name" : "Fortify",
         "description" : "Boost a faction's Fortitude by 2 for the day.",
-        "usage" : "!cast protection [faction]",
+        "usage" : "cast protection [faction]",
         "magic_level_requirement" : 1,
         "can_cast_on_self" : true
+    },
+    "protection" : {
+        "name" : "Protection",
+        "description" : "Protect one faction from battle. At the end of the day the battles info will show that the defender was protected by mysterious forces.",
+        "usage" : "cast protection [faction]",
+        "magic_level_requirement" : 3,
+        "can_cast_on_self" : false
     }
 }

@@ -12,14 +12,14 @@ const get_resource_requirement = require('../helpers/get_resource_requirement');
 
 module.exports = async (faction_store, client) => {
     const d = new Date();
-    console.log("Training Resources...", d.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    console.log("Training Skill...", d.toLocaleString('en-US', { timeZone: 'America/New_York' }));
 
     for (let i = 0; i < valid_factions.length; i++) {
         const faction_key = valid_factions[i];
         const faction = faction_store.get(faction_key);
         if (!faction) continue;
         if (!faction.currently_training) {
-            send_message_to_faction_leaders_with_store("Your faction is not set to train any skills. Run the `!train` command", faction_store, faction_key, client);
+            send_message_to_faction_leaders_with_store(`Your faction is not set to train any skills. Run the \`${process.env.PREFIX}train\` command`, faction_store, faction_key, client);
             continue;
         }
 

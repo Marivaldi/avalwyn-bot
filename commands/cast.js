@@ -15,12 +15,12 @@ module.exports = async (message, client, argument, target) => {
     const player = bot_store.get(message.author.id);
 
     if(!player) {
-        message.channel.send("You haven't even started a game yet. Run the `!start` command.");
+        message.channel.send(`You haven't even started a game yet, or haven't confirmed on the first prompt. Run the \`${process.env.PREFIX}start\` command, or the \`${process.env.PREFIX}yes\` command.`);
         return;
     }
 
     if(!player.faction) {
-        message.author.send("Looks like you're not currently a part of any factions. Run `!join` followed by one of these faction names: `" + valid_factions.join(' ') +"`");
+        message.author.send(`Looks like you're not currently a part of any factions. Run \`${process.env.PREFIX}join\` followed by one of these faction names: \`${valid_factions.join(' ')}\``);
         return;
     }
 
@@ -41,14 +41,14 @@ module.exports = async (message, client, argument, target) => {
     const enemy = target;
 
     if(!enemy) {
-        message.author.send("You must specify the target of a spell. `!cast [spell] [target]`");
+        message.author.send(`You must specify the target of a spell. \`${process.env.PREFIX}cast [spell] [target]\``);
         return;
     }
 
     const not_a_valid_faction = !valid_factions.includes(enemy);
     if(not_a_valid_faction) {
         const factions_not_including_own = valid_factions.filter((faction) => faction !== player.faction);
-        message.author.send("`" + enemy + "` is not a valid faction. Run `!cast` followed by one of these: `" + factions_not_including_own.join(', ') + "`");
+        message.author.send(`\`${enemy}\` is not a valid faction. Run \`${process.env.PREFIX}cast\` followed by one of these: \`${factions_not_including_own.join(', ')}\``);
         return;
     }
 
@@ -62,7 +62,7 @@ module.exports = async (message, client, argument, target) => {
     const factionIsAlreadyBattling = faction_state.isBattling();
     if(factionIsAlreadyBattling) {
         const existing_enemy = faction_state.battlingWho();
-        message.author.send("You already have a battle pending with "+ to_faction_name(existing_enemy) + ". You can't cast and battle on the same day.\nRun `!battle cancel` if you'd like to withdraw your troops from the battlefield. Then try casting the spell.");
+        message.author.send(`You already have a battle pending with ${to_faction_name(existing_enemy)}. Run \`${process.env.PREFIX}battle cancel\` or \`${process.env.PREFIX}cancel_battle\` if you'd like to withdraw your troops from the battlefield.`);
         return;
     }
 
@@ -70,7 +70,7 @@ module.exports = async (message, client, argument, target) => {
     if(factionIsAlreadyCasting) {
         const existing_enemy = faction_state.castingAgainstWho();
         const pending_spell = faction_state.castingWhichSpell();
-        message.author.send("You are already casting " + all_spells[pending_spell].name + " on "+ to_faction_name(existing_enemy) + ". You can't cast and battle on the same day.\nRun `!cast cancel` if you'd like to cancel the pending spell, and try casting a new one.");
+        message.author.send(`You are already casting ${pending_spell} on ${to_faction_name(existing_enemy)}. You can't cast and battle on the same day.\nRun \`${process.env.PREFIX}cast cancel\` or \`${process.env.PREFIX}cancel_spell\` if you'd like to cancel the pending spell, and try casting a new one.`);
         return;
     }
 
@@ -82,7 +82,7 @@ module.exports = async (message, client, argument, target) => {
 
     const player_is_trying_to_cast_on_self = player.faction === enemy;
     if(player_is_trying_to_cast_on_self && !all_spells[spell].can_cast_on_self) {
-        message.author.send(`Unfortunately, ${all_spells[spell].name} cannot be cast on self. Run the \`!spells\` to get more information.`);
+        message.author.send(`Unfortunately, ${all_spells[spell].name} cannot be cast on self. Run the \`${process.env.PREFIX}spells\` to get more information.`);
         return;
     }
 
@@ -97,7 +97,7 @@ module.exports = async (message, client, argument, target) => {
 
     faction_state.castSpell(enemy, spell);
 
-    const casting_message = `You've chosen to cast ${all_spells[spell].name} on ${to_faction_name(enemy)}`;
+    const casting_message = `You've chosen to cast ${all_spells[spell].name} on ${to_faction_name(enemy)} :man_mage:`;
     send_message_to_faction_leaders(casting_message, player.faction, client)
 }
 

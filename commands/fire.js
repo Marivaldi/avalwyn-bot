@@ -14,12 +14,12 @@ module.exports = async (message, client, argument) => {
     const player = bot_store.get(message.author.id);
 
     if(!player) {
-        message.channel.send("You haven't even started a game yet. Run the `!start` command.");
+        message.channel.send(`You haven't even started a game yet, or haven't confirmed on the first prompt. Run the \`${process.env.PREFIX}start\` command, or the \`${process.env.PREFIX}yes\` command.`);
         return;
     }
 
     if(!player.faction) {
-        message.author.send("Looks like you're not currently a part of any factions. Run `!join` followed by one of these faction names: `" + valid_factions.join(' ') +"`");
+        message.author.send(`Looks like you're not currently a part of any factions. Run \`${process.env.PREFIX}join\` followed by one of these faction names: \`${valid_factions.join(' ')}\``);
         return;
     }
 
@@ -74,5 +74,5 @@ module.exports = async (message, client, argument) => {
     }
 
     message.channel.send(`${diplomats[diplomat_key].name} is sad that they have been released.`);
-    send_message_to_active_channel(`${diplomats[diplomat_key].name} is now a free agent. Run \`!hire ${diplomat_key}\` to bring them on board.`, client);
+    send_message_to_active_channel(`${diplomats[diplomat_key].name} is now a free agent. Run \`${process.env.PREFIX}hire ${diplomat_key}\` to bring them on board.`, client);
 }
