@@ -2,6 +2,8 @@ const AWS = require("aws-sdk"); // from AWS SDK
 const fs = require("fs"); // from node.js
 const path = require("path"); // from node.js
 const AvalwynStorage = require("../AvalwynStorage");
+const send_message_to_active_channel = require("./send_message_to_active_channel");
+const release_notes_embed = require('../embeds/release_notes_embed');
 const data_files = ["bot_data", "active_channel_data", "state_data", "faction_data"];
 const s3 = new AWS.S3({
     signatureVersion: 'v4',
@@ -14,11 +16,11 @@ const config = {
 };
 
 let num_processed = 0;
-module.exports = async () => {
+module.exports = async (client) => {
     num_processed = 0;
     data_files.forEach((data_file) => {
         const destinationFilePath = path.join(__dirname, `${config.folderPath}/${data_file}`);
-        downloadFile(destinationFilePath, config.s3BucketName, data_file);
+        downloadFile(destinationFilePath, config.s3BucketName, data_file, client);
     });
 
     return new Promise((resolve, reject) => {
@@ -26,7 +28,7 @@ module.exports = async () => {
     });
 }
 
-async function downloadFile(filePath, bucketName, key) {
+async function downloadFile(filePath, bucketName, key, client) {
     const params = {
         Bucket: bucketName,
         Key: key
@@ -46,6 +48,7 @@ async function downloadFile(filePath, bucketName, key) {
 
         if (num_processed === data_files.length) {
             const astorage = new AvalwynStorage();
+            send_message_to_active_channel(release_notes_embed, client)
         }
     });
 };

@@ -36,7 +36,7 @@ const send_diplomat = require('./commands/send_diplomat');
 let jobs = [];
 
 client.once('ready', async () => {
-    await download_data_from_s3();
+    await download_data_from_s3(client);
     jobs = setup_scheduled_jobs(client);
     if(jobs.length === 0) {
         console.error("Shutting down due to bad CRON jobs!");
@@ -93,8 +93,16 @@ client.on('message', message => {
         case "train":
             train(message, client, args.shift());
             break;
+        case "cancel_battle":
+        case "cancel_attack":
+            battle(message, client, "cancel");
+            break;
         case "battle":
+        case "attack":
             battle(message, client, args.shift());
+            break;
+        case "cancel_spell":
+            cast(message, client, "cancel", undefined);
             break;
         case "cast":
             cast(message, client, args.shift(), args.shift());
