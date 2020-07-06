@@ -95,11 +95,11 @@ client.on('message', message => {
             break;
         case "cancel_battle":
         case "cancel_attack":
-            battle(message, client, "cancel");
+            battle(message, client, "cancel", true);
             break;
         case "battle":
         case "attack":
-            battle(message, client, args.shift());
+            battle(message, client, args.shift(), true);
             break;
         case "cancel_spell":
             cast(message, client, "cancel", undefined);
