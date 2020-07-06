@@ -2,7 +2,7 @@
     "fortify" : {
         "name" : "Fortify",
         "description" : "Boost a faction's Fortitude by 2 for the day.",
-        "usage" : "cast protection [faction]",
+        "usage" : "cast fortify [faction]",
         "magic_level_requirement" : 1,
         "can_cast_on_self" : true
     },
