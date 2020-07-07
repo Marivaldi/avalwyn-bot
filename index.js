@@ -32,6 +32,7 @@ const random_diplomat = require('./scheduled_jobs/random_diplomat');
 const send_message_to_active_channel = require('./helpers/send_message_to_active_channel');
 const sync = require('./commands/sync');
 const send_diplomat = require('./commands/send_diplomat');
+const evil_laugh = require('./commands/evil_laugh');
 
 let jobs = [];
 
@@ -127,6 +128,9 @@ client.on('message', message => {
             break;
         case "send_diplomat":
             send_diplomat(message, client);
+            break;
+        case "evil_laugh":
+            evil_laugh(message);
             break;
         default:
             message.channel.send("`" + message.content + "` is not a valid command");

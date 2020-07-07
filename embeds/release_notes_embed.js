@@ -4,12 +4,12 @@ const release_notes_version = (process.env.HEROKU_RELEASE_VERSION) ? `(${process
 const embed = new Discord.MessageEmbed()
     .setColor(faction_selection.color)
     .setTitle(`Release Notes ${release_notes_version}`)
-    .setDescription("*Sorry bout that... :grimacing:*");
+    .setDescription("*Muahahaha ahahaaaaa hahahahahahahHAHAHAHAHAA!!!!!1!!1!!!*");
 
 
 embed.addFields({
-    name: ":bug: Fixing Battle Notification Bug :bug:",
-    value: 'Made a woopsie in the code. Please forgive me.'
+    name: ":rofl: Added Evil Laugh Command :rofl:",
+    value: 'Matt, this is for you.\n`a!evil_laugh`'
 })
 
 
