@@ -4,12 +4,12 @@ const release_notes_version = (process.env.HEROKU_RELEASE_VERSION) ? `(${process
 const embed = new Discord.MessageEmbed()
     .setColor(faction_selection.color)
     .setTitle(`Release Notes ${release_notes_version}`)
-    .setDescription("*Make quick cash, and all you have to do is help sync the data. WOW!*");
+    .setDescription("*You can now see Allrender in all his glory*");
 
 
 embed.addFields({
-    name: ":moneybag: Anyone Can Sync Data! :moneybag:",
-    value: `I noticed that Alex wanted to sync the data to help out. The bot now allows non-admins to sync the data. You'll recieve +1 Gold anytime you sync the data. Please don't spam it though. It might break it... :grimacing:\n\`a!sync\``
+    name: ":lizard: Krackan's Profile Pic :lizard:",
+    value: `The picture for Krackan will now be Allrenders character image from our old Dracalli game.`
 })
 
 
