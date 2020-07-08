@@ -81,7 +81,7 @@ module.exports = async (faction_store, client) => {
                 const gold_gain = random.int(1, 20);
                 faction.resources.gold += gold_gain;
                 const life_loss_text = `${to_faction_name(enemy_faction_key)} lost ${total_loss_text} ${to_resource_name(enemy_faction_key, "citizens")}.`;
-                const gold_gain_text = `${to_faction_name(faction_key)} gained ${gold_gain} ${to_resource_name(faction_key, "gold")}.`;
+                const gold_gain_text = `\n${to_faction_name(faction_key)} gained ${gold_gain} ${to_resource_name(faction_key, "gold")}.`;
                 embed.addFields({
                     name: `${to_faction_name(faction_key)} Broke the Defenses`,
                     value: `${roll_text}\n${life_loss_text}${ricky_text}${gold_gain_text}${danson_son_text}`
